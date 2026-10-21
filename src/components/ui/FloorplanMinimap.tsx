@@ -19,7 +19,7 @@ export const FloorplanMinimap: React.FC<FloorplanMinimapProps> = ({
   inspectedArtworkId
 }) => {
   const [activeTab, setActiveTab] = useState<'blueprint' | 'catalog'>('blueprint');
-  const [catalogFilter, setCatalogFilter] = useState<'all' | 'hall-1' | 'hall-2'>('all');
+  const [catalogFilter, setCatalogFilter] = useState<'all' | 'room-1' | 'room-2' | 'room-3' | 'room-4' | 'room-5'>('all');
 
   if (!isOpen) return null;
 
@@ -52,9 +52,9 @@ export const FloorplanMinimap: React.FC<FloorplanMinimapProps> = ({
     {
       num: '01',
       id: 'room-1',
-      name: 'PAVILION I · GENESIS',
-      desc: 'Masterworks 01–05 · Frontal Feature Wall',
-      works: 'MW 01–05',
+      name: 'ROOM I · SEP 2020 – MAR 2022',
+      desc: 'Works 01–05 · Paint Tool SAI & Clip Studio Paint',
+      works: '01–05',
       target: 0.11,
       svgY: 224,
       svgH: 44
@@ -62,9 +62,9 @@ export const FloorplanMinimap: React.FC<FloorplanMinimapProps> = ({
     {
       num: '02',
       id: 'room-2',
-      name: 'THE CENTRAL ROTUNDA',
-      desc: 'Masterworks 06–10 · Kinetic Celestial Dome',
-      works: 'MW 06–10',
+      name: 'ROOM II · APR 2022 – SEP 2022',
+      desc: 'Works 06–10 · The Kinetic Celestial Rotunda',
+      works: '06–10',
       target: 0.31,
       svgY: 168,
       svgH: 50
@@ -72,9 +72,9 @@ export const FloorplanMinimap: React.FC<FloorplanMinimapProps> = ({
     {
       num: '03',
       id: 'room-3',
-      name: 'PAVILION II · VISIONS',
-      desc: 'Masterworks 11–16 · Twin Flagship Portal',
-      works: 'MW 11–16',
+      name: 'ROOM III · MAY 2023 – OCT 2024',
+      desc: 'Works 11–15 · Salon & Junetta Series',
+      works: '11–15',
       target: 0.51,
       svgY: 112,
       svgH: 50
@@ -82,9 +82,9 @@ export const FloorplanMinimap: React.FC<FloorplanMinimapProps> = ({
     {
       num: '04',
       id: 'room-4',
-      name: 'THE DRAWING STUDIO',
-      desc: 'Studies 01–08 · Atelier Pinboards & Tables',
-      works: 'ST 01–08',
+      name: 'ROOM IV · MAR 2026 – JUN 2026',
+      desc: 'Works 16–23 · The Drawing Studio (Procreate on iPad)',
+      works: '16–23',
       target: 0.70,
       svgY: 66,
       svgH: 40
@@ -92,9 +92,9 @@ export const FloorplanMinimap: React.FC<FloorplanMinimapProps> = ({
     {
       num: '05',
       id: 'room-5',
-      name: 'THE STUDY ARCHIVE',
-      desc: 'Studies 09–16 · Museum Showcase Vitrine',
-      works: 'ST 09–16',
+      name: 'ROOM V · AUG 2026 – SEP 2026',
+      desc: 'Works 24–31 · The Master Study Archive',
+      works: '24–31',
       target: 0.85,
       svgY: 26,
       svgH: 36
@@ -103,8 +103,8 @@ export const FloorplanMinimap: React.FC<FloorplanMinimapProps> = ({
       num: '06',
       id: 'desk',
       name: 'CURATORIAL DESK',
-      desc: 'Retrospective Monograph & Commissions',
-      works: 'FINALE',
+      desc: 'Exhibition Statement & Inquiries',
+      works: 'DESK',
       target: 0.985,
       svgY: 4,
       svgH: 18
@@ -115,7 +115,7 @@ export const FloorplanMinimap: React.FC<FloorplanMinimapProps> = ({
   const visitorSvgY = 292 - Math.max(0, Math.min(1, scrollProgress)) * 278;
 
   const filteredArtworks = ARTWORKS.filter(art =>
-    catalogFilter === 'all' ? true : art.hall === catalogFilter
+    catalogFilter === 'all' ? true : art.room === catalogFilter
   );
 
   return (
@@ -151,7 +151,7 @@ export const FloorplanMinimap: React.FC<FloorplanMinimapProps> = ({
                   : 'bg-white/[0.03] text-neutral-400 border-white/10 hover:text-white'
               }`}
             >
-              CATALOG INDEX (32 WORKS)
+              CATALOG INDEX (31 WORKS)
             </button>
             <button
               onClick={onClose}
@@ -442,37 +442,67 @@ export const FloorplanMinimap: React.FC<FloorplanMinimapProps> = ({
         ) : (
           /* Visual Catalog Index Tab (All 32 Works) */
           <div>
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-2 font-mono text-[10px]">
+            <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
+              <div className="flex flex-wrap items-center gap-1.5 font-mono text-[10px]">
                 <button
                   onClick={() => setCatalogFilter('all')}
-                  className={`px-2.5 py-1 uppercase tracking-wider border ${
+                  className={`px-2.5 py-1 uppercase tracking-wider border transition-colors ${
                     catalogFilter === 'all'
-                      ? 'border-[#cba76b] text-[#cba76b] bg-[#cba76b]/10'
+                      ? 'border-[#cba76b] text-[#cba76b] bg-[#cba76b]/10 font-bold'
                       : 'border-white/10 text-neutral-400 hover:text-white'
                   }`}
                 >
-                  ALL WORKS (32)
+                  ALL (31)
                 </button>
                 <button
-                  onClick={() => setCatalogFilter('hall-1')}
-                  className={`px-2.5 py-1 uppercase tracking-wider border ${
-                    catalogFilter === 'hall-1'
-                      ? 'border-[#cba76b] text-[#cba76b] bg-[#cba76b]/10'
+                  onClick={() => setCatalogFilter('room-1')}
+                  className={`px-2 py-1 uppercase tracking-wider border transition-colors ${
+                    catalogFilter === 'room-1'
+                      ? 'border-[#cba76b] text-[#cba76b] bg-[#cba76b]/10 font-bold'
                       : 'border-white/10 text-neutral-400 hover:text-white'
                   }`}
                 >
-                  MASTERWORKS (16)
+                  ROOM I (5)
                 </button>
                 <button
-                  onClick={() => setCatalogFilter('hall-2')}
-                  className={`px-2.5 py-1 uppercase tracking-wider border ${
-                    catalogFilter === 'hall-2'
-                      ? 'border-[#cba76b] text-[#cba76b] bg-[#cba76b]/10'
+                  onClick={() => setCatalogFilter('room-2')}
+                  className={`px-2 py-1 uppercase tracking-wider border transition-colors ${
+                    catalogFilter === 'room-2'
+                      ? 'border-[#cba76b] text-[#cba76b] bg-[#cba76b]/10 font-bold'
                       : 'border-white/10 text-neutral-400 hover:text-white'
                   }`}
                 >
-                  ATELIER STUDIES (16)
+                  ROOM II (5)
+                </button>
+                <button
+                  onClick={() => setCatalogFilter('room-3')}
+                  className={`px-2 py-1 uppercase tracking-wider border transition-colors ${
+                    catalogFilter === 'room-3'
+                      ? 'border-[#cba76b] text-[#cba76b] bg-[#cba76b]/10 font-bold'
+                      : 'border-white/10 text-neutral-400 hover:text-white'
+                  }`}
+                >
+                  ROOM III (5)
+                </button>
+                <button
+                  onClick={() => setCatalogFilter('room-4')}
+                  className={`px-2 py-1 uppercase tracking-wider border transition-colors ${
+                    catalogFilter === 'room-4'
+                      ? 'border-[#cba76b] text-[#cba76b] bg-[#cba76b]/10 font-bold'
+                      : 'border-white/10 text-neutral-400 hover:text-white'
+                  }`}
+                >
+                  ROOM IV (8)
+                </button>
+                <button
+                  onClick={() => setCatalogFilter('room-5')}
+                  className={`px-2 py-1 uppercase tracking-wider border transition-colors ${
+                    catalogFilter === 'room-5'
+                      ? 'border-[#cba76b] text-[#cba76b] bg-[#cba76b]/10 font-bold'
+                      : 'border-white/10 text-neutral-400 hover:text-white'
+                  }`}
+                >
+                  ROOM V (8)
                 </button>
               </div>
               <span className="text-[10px] font-mono text-neutral-500 uppercase hidden sm:inline">

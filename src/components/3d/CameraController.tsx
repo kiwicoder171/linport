@@ -60,17 +60,16 @@ export const CameraController: React.FC<CameraControllerProps> = ({
       new THREE.Vector3(0.0, 2.15, -40.2),   // Aligning with North exit portal
       new THREE.Vector3(0.0, 2.15, -43.8),   // Passing through Rotunda North doorway
 
-      // --- ROOM 3: Pavilion II · Visions (Z = -45 to -69) ---
-      new THREE.Vector3(-1.4, 2.15, -46.5), // Entering Room 3, angling toward MW 11
-      // Left Wall First: MW 11 (-49.5), MW 12 (-56.0), MW 13 (-62.5)
-      new THREE.Vector3(-2.3, 2.15, -49.5), // Framing MW 11 on Left Wall
-      new THREE.Vector3(-2.3, 2.15, -56.0), // Framing MW 12 on Left Wall
-      new THREE.Vector3(-2.3, 2.15, -62.5), // Framing MW 13 on Left Wall
-      // Right Wall: MW 14 (-53.5), MW 15 (-61.5)
-      new THREE.Vector3(1.8, 2.15, -54.5),  // Sweeping to Right side, framing MW 14
-      new THREE.Vector3(2.0, 2.15, -61.5),  // Framing MW 15 on Right Wall
-      // Focal North Wall Finale: MW 16 (-68.75)
-      new THREE.Vector3(0.0, 2.15, -64.5),  // Center front, framing flagship MW 16
+      // --- ROOM 3: Pavilion II (May 2023 – Oct 2024, Z = -45 to -69) ---
+      new THREE.Vector3(-1.4, 2.15, -46.5), // Entering Room 3, angling toward art-11
+      // West Wall: art-11 (-52.0), art-12 (-60.0)
+      new THREE.Vector3(-2.3, 2.15, -52.0), // Framing art-11 on Left Wall
+      new THREE.Vector3(-2.3, 2.15, -60.0), // Framing art-12 on Left Wall
+      // East Wall: art-13 (-52.0), art-14 (-60.0)
+      new THREE.Vector3(1.8, 2.15, -52.0),  // Sweeping to Right side, framing art-13
+      new THREE.Vector3(2.0, 2.15, -60.0),  // Framing art-14 on Right Wall
+      // Focal North Wall Finale: art-15 (-68.75)
+      new THREE.Vector3(0.0, 2.15, -64.5),  // Center front, framing flagship art-15
       // Exit Portal to Room 4
       new THREE.Vector3(3.5, 2.15, -67.8),  // Approaching Right exit portal
       new THREE.Vector3(3.6, 2.05, -70.8),  // Passing through Room 3 exit doorway
@@ -134,14 +133,13 @@ export const CameraController: React.FC<CameraControllerProps> = ({
       new THREE.Vector3(0.0, 2.15, -48.0),   // Looking toward exit portal
       new THREE.Vector3(-1.5, 2.15, -50.0),  // Looking ahead into Room 3
 
-      // ROOM 3 (Pavilion II)
-      new THREE.Vector3(-7.45, 2.35, -49.5), // Looking at MW 11 early
-      new THREE.Vector3(-7.45, 2.35, -49.5), // Facing MW 11
-      new THREE.Vector3(-7.45, 2.35, -56.0), // Facing MW 12
-      new THREE.Vector3(-7.45, 2.35, -62.5), // Facing MW 13
-      new THREE.Vector3(7.45, 2.35, -53.5),  // Facing MW 14
-      new THREE.Vector3(7.45, 2.35, -61.5),  // Facing MW 15
-      new THREE.Vector3(0.0, 2.35, -68.75),  // Facing flagship MW 16
+      // ROOM 3 (May 2023 – Oct 2024)
+      new THREE.Vector3(-7.45, 2.35, -52.0), // Looking at art-11 early
+      new THREE.Vector3(-7.45, 2.35, -52.0), // Facing art-11
+      new THREE.Vector3(-7.45, 2.35, -60.0), // Facing art-12
+      new THREE.Vector3(7.45, 2.35, -52.0),  // Facing art-13
+      new THREE.Vector3(7.45, 2.35, -60.0),  // Facing art-14
+      new THREE.Vector3(0.0, 2.35, -68.75),  // Facing flagship art-15
       new THREE.Vector3(3.6, 2.15, -75.0),   // Looking at right exit portal
       new THREE.Vector3(-1.5, 2.05, -75.5),  // Looking into Studio
 

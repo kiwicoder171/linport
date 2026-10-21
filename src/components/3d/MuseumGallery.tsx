@@ -1,6 +1,6 @@
 import React, { Suspense, useMemo } from 'react';
 import { Text, Sparkles } from '@react-three/drei';
-import { Artwork, MASTERWORKS, STUDIES, EXHIBITION_METADATA } from '../../data/artworks';
+import { Artwork, ARTWORKS, EXHIBITION_METADATA } from '../../data/artworks';
 import { getArtworkTransform } from '../../data/artworkTransforms';
 import { getPlasterWallTexture } from '../../utils/proceduralTextures';
 import { FramedArtwork } from './FramedArtwork';
@@ -250,7 +250,7 @@ export const MuseumGallery: React.FC<MuseumGalleryProps> = ({
           textAlign="center"
           lineHeight={1.5}
         >
-          Six architectural halls housing 16 Masterworks & 16 Atelier Studies. Scroll to walk the collection; click any frame to inspect.
+          Six architectural halls housing 31 chronological artworks across 2020–2026. Scroll to walk the collection; click any frame to inspect.
         </Text>
       </group>
 
@@ -337,12 +337,12 @@ export const MuseumGallery: React.FC<MuseumGalleryProps> = ({
         <DoorwayThreshold position={[3.8, 0, -10]} width={3.2} />
 
         <Text position={[3.8, 4.3, -9.78]} fontSize={0.15} color="#cba76b" letterSpacing={0.16} anchorX="center">
-          TO ROOM II · THE ROTUNDA →
+          TO ROOM II · APR 2022 – SEP 2022 →
         </Text>
 
         {/* Room Title Plaque */}
         <Text position={[0, 4.7, 9.78]} fontSize={0.22} color="#cba76b" letterSpacing={0.2} anchorX="center">
-          PAVILION I · GENESIS
+          ROOM I · SEP 2020 – MAR 2022
         </Text>
 
         {/* Minimalist Floating Travertine Gallery Bench */}
@@ -350,7 +350,7 @@ export const MuseumGallery: React.FC<MuseumGalleryProps> = ({
       </group>
 
       <Suspense fallback={null}>
-        {MASTERWORKS.slice(0, 5).map((art) => {
+        {ARTWORKS.filter((a) => a.room === 'room-1').map((art) => {
           const t = getArtworkTransform(art.id);
           return (
             <FramedArtwork
@@ -458,14 +458,14 @@ export const MuseumGallery: React.FC<MuseumGalleryProps> = ({
             <meshStandardMaterial color="#58544e" roughness={0.65} />
           </mesh>
           <Text position={[0, 2.1, 0.28]} fontSize={0.16} color="#cba76b" letterSpacing={0.16} anchorX="center">
-            ROOM III · PAVILION II: VISIONS →
+            ROOM III · MAY 2023 – OCT 2024 →
           </Text>
         </group>
         <DoorwayThreshold position={[0, 0, -9.4]} width={5.2} />
 
         {/* Room Header Text */}
         <Text position={[0, 4.8, 7.8]} fontSize={0.22} color="#cba76b" letterSpacing={0.2} anchorX="center">
-          ROOM II · THE CENTRAL ROTUNDA
+          ROOM II · APR 2022 – SEP 2022
         </Text>
 
         {/* Overhead Kinetic Chandelier (Hovering at Y = 3.65, zero walkway collision) */}
@@ -473,7 +473,7 @@ export const MuseumGallery: React.FC<MuseumGalleryProps> = ({
       </group>
 
       <Suspense fallback={null}>
-        {MASTERWORKS.slice(5, 10).map((art) => {
+        {ARTWORKS.filter((a) => a.room === 'room-2').map((art) => {
           const t = getArtworkTransform(art.id);
           return (
             <FramedArtwork
@@ -581,10 +581,10 @@ export const MuseumGallery: React.FC<MuseumGalleryProps> = ({
         <DoorwayThreshold position={[4.0, 0, -12]} width={2.8} />
 
         <Text position={[4.0, 4.3, -11.78]} fontSize={0.15} color="#cba76b" letterSpacing={0.14} anchorX="center">
-          TO ROOM IV · DRAWING STUDIO →
+          TO ROOM IV · MAR 2026 – JUN 2026 →
         </Text>
         <Text position={[0, 4.8, 11.78]} fontSize={0.22} color="#cba76b" letterSpacing={0.2} anchorX="center">
-          ROOM III · PAVILION II: VISIONS
+          ROOM III · MAY 2023 – OCT 2024
         </Text>
 
         {/* Centered Minimalist Gallery Bench facing Masterwork #16 */}
@@ -592,7 +592,7 @@ export const MuseumGallery: React.FC<MuseumGalleryProps> = ({
       </group>
 
       <Suspense fallback={null}>
-        {MASTERWORKS.slice(10, 16).map((art) => {
+        {ARTWORKS.filter((a) => a.room === 'room-3').map((art) => {
           const t = getArtworkTransform(art.id);
           return (
             <FramedArtwork
@@ -680,16 +680,16 @@ export const MuseumGallery: React.FC<MuseumGalleryProps> = ({
         <DoorwayThreshold position={[0, 0, -10]} width={4.8} />
 
         <Text position={[0, 4.3, -9.78]} fontSize={0.15} color="#cba76b" letterSpacing={0.14} anchorX="center">
-          TO ROOM V · THE STUDY ARCHIVE →
+          TO ROOM V · AUG 2026 – SEP 2026 →
         </Text>
 
         <Text position={[0, 4.7, 9.78]} fontSize={0.22} color="#cba76b" letterSpacing={0.2} anchorX="center">
-          ROOM IV · THE DRAWING STUDIO
+          ROOM IV · MAR 2026 – JUN 2026
         </Text>
       </group>
 
       <Suspense fallback={null}>
-        {STUDIES.slice(0, 8).map((art) => {
+        {ARTWORKS.filter((a) => a.room === 'room-4').map((art) => {
           const t = getArtworkTransform(art.id);
           return (
             <FramedArtwork
@@ -769,16 +769,16 @@ export const MuseumGallery: React.FC<MuseumGalleryProps> = ({
         <DoorwayThreshold position={[0, 0, -10]} width={5.2} />
 
         <Text position={[0, 4.3, -9.78]} fontSize={0.15} color="#cba76b" letterSpacing={0.14} anchorX="center">
-          TO CURATORIAL DESK & LOUNGE →
+          TO ROOM VI · CURATORIAL DESK & LOUNGE →
         </Text>
 
         <Text position={[0, 4.7, 9.78]} fontSize={0.22} color="#cba76b" letterSpacing={0.2} anchorX="center">
-          ROOM V · THE STUDY ARCHIVE
+          ROOM V · AUG 2026 – SEP 2026
         </Text>
       </group>
 
       <Suspense fallback={null}>
-        {STUDIES.slice(8, 16).map((art) => {
+        {ARTWORKS.filter((a) => a.room === 'room-5').map((art) => {
           const t = getArtworkTransform(art.id);
           return (
             <FramedArtwork

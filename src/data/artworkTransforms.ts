@@ -8,194 +8,192 @@ export interface ArtworkTransform {
 }
 
 /**
- * Single Source of Truth for all 32 artwork spatial transforms in the museum.
- * Curatorial Rule: In each room, left-hand artworks are visited first,
- * followed by focal centerpieces, then right-hand artworks.
- * Every artwork hangs 100% FLAT against the wall face with ZERO wall sinking!
+ * Single Source of Truth for all 31 artwork spatial transforms across the 5 exhibition halls.
+ * Curated Chronologically by Lin:
+ * Room 1: Sep 2020 – Mar 2022 (Works 01–05)
+ * Room 2: Apr 2022 – Sep 2022 (Works 06–10)
+ * Room 3: May 2023 – Oct 2024 (Works 11–15)
+ * Room 4: Mar 2026 – Jun 2026 (Works 16–23)
+ * Room 5: Aug 2026 – Sep 2026 (Works 24–31)
  */
 export const ARTWORK_TRANSFORMS: Record<string, ArtworkTransform> = {
   // =========================================================================
-  // ROOM 1: PAVILION I · GENESIS (Masterworks 1–5, Z = 2 to -18)
-  // Left wall first (MW 1, 2) -> Focal North wall (MW 3) -> Right wall (MW 4, 5)
+  // ROOM 1: PAVILION I (Sep 2020 – Mar 2022, Z = 2 to -18)
+  // Left wall (01, 02) -> Focal North wall (03) -> Right wall (04, 05)
   // =========================================================================
-  'mw-01': {
-    position: [-6.92, 2.35, -4.5],
-    rotation: [0, Math.PI / 2, 0], // Left Wall (West) #1
+  'art-01': {
+    position: [-6.92, 2.35, -5.5],
+    rotation: [0, Math.PI / 2, 0], // Date Night
     baseHeight: 2.35
   },
-  'mw-02': {
-    position: [-6.92, 2.35, -11.5],
-    rotation: [0, Math.PI / 2, 0], // Left Wall (West) #2
+  'art-02': {
+    position: [-6.92, 2.35, -12.5],
+    rotation: [0, Math.PI / 2, 0], // Dorothy
     baseHeight: 2.35
   },
-  'mw-03': {
+  'art-03': {
     position: [-1.8, 2.35, -17.72],
-    rotation: [0, 0, 0], // Focal Flagship on North Wall (0.08m in front of -17.80 face)
+    rotation: [0, 0, 0], // Haunted (Focal North Wall)
     baseHeight: 2.5
   },
-  'mw-04': {
-    position: [6.92, 2.35, -8.0],
-    rotation: [0, -Math.PI / 2, 0], // Right Wall (East) #1 (Generous 6.5m spacing!)
+  'art-04': {
+    position: [6.92, 2.35, -7.5],
+    rotation: [0, -Math.PI / 2, 0], // The Last Goodbye Kiss
     baseHeight: 2.35
   },
-  'mw-05': {
+  'art-05': {
     position: [6.92, 2.35, -14.5],
-    rotation: [0, -Math.PI / 2, 0], // Right Wall (East) #2
+    rotation: [0, -Math.PI / 2, 0], // Late Night In The City
     baseHeight: 2.35
   },
 
   // =========================================================================
-  // ROOM 2: THE CENTRAL ROTUNDA (Masterworks 6–10, Center: [0, 0, -33])
-  // Left rotunda bays first (MW 6, 7, 8) -> Right rotunda bays (MW 9, 10)
+  // ROOM 2: THE CENTRAL ROTUNDA (Apr 2022 – Sep 2022, Center: [0, 0, -33])
+  // Octagonal perimeter niches (Works 06–10)
   // =========================================================================
-  'mw-06': {
+  'art-06': {
     position: [-7.72, 2.35, -29.0],
-    rotation: [0, Math.PI / 2, 0], // West rotunda wall South (Left 1)
+    rotation: [0, Math.PI / 2, 0], // The Witch (West wall South)
     baseHeight: 2.35
   },
-  'mw-07': {
+  'art-07': {
     position: [-7.72, 2.35, -35.0],
-    rotation: [0, Math.PI / 2, 0], // West rotunda wall North (Left 2)
+    rotation: [0, Math.PI / 2, 0], // Crying Girl (West wall North)
     baseHeight: 2.35
   },
-  'mw-08': {
+  'art-08': {
     position: [-5.54, 2.35, -40.14],
-    rotation: [0, Math.PI / 4, 0], // Northwest rotunda bay (Left 3 — faces South-East toward center)
+    rotation: [0, Math.PI / 4, 0], // The Demon Sister (NW diagonal bay)
     baseHeight: 2.35
   },
-  'mw-09': {
+  'art-09': {
     position: [5.54, 2.35, -40.14],
-    rotation: [0, -Math.PI / 4, 0], // Northeast rotunda bay (Right 1 — faces South-West toward center)
+    rotation: [0, -Math.PI / 4, 0], // Last Stop (NE diagonal bay)
     baseHeight: 2.35
   },
-  'mw-10': {
+  'art-10': {
     position: [7.72, 2.35, -33.0],
-    rotation: [0, -Math.PI / 2, 0], // East rotunda niche (Right 2)
+    rotation: [0, -Math.PI / 2, 0], // After Midnight (East rotunda niche)
     baseHeight: 2.35
   },
 
   // =========================================================================
-  // ROOM 3: PAVILION II · VISIONS (Masterworks 11–16, Z = -45 to -69)
-  // Left wall first (MW 11, 12, 13) -> Right wall (MW 14, 15) -> Focal finale (MW 16)
+  // ROOM 3: PAVILION II (May 2023 – Oct 2024, Z = -45 to -69)
+  // West wall (11, 12) -> East wall (13, 14) -> Focal North wall (15)
   // =========================================================================
-  'mw-11': {
-    position: [-7.42, 2.35, -49.5],
-    rotation: [0, Math.PI / 2, 0], // Left Wall (West) #1
+  'art-11': {
+    position: [-7.42, 2.35, -52.0],
+    rotation: [0, Math.PI / 2, 0], // Crying Fairy
     baseHeight: 2.35
   },
-  'mw-12': {
-    position: [-7.42, 2.35, -56.0],
-    rotation: [0, Math.PI / 2, 0], // Left Wall (West) #2
+  'art-12': {
+    position: [-7.42, 2.35, -60.0],
+    rotation: [0, Math.PI / 2, 0], // Fringe & Shadow (Cinema Crop)
     baseHeight: 2.35
   },
-  'mw-13': {
-    position: [-7.42, 2.35, -62.5],
-    rotation: [0, Math.PI / 2, 0], // Left Wall (West) #3
+  'art-13': {
+    position: [7.42, 2.35, -52.0],
+    rotation: [0, -Math.PI / 2, 0], // Heated Call
     baseHeight: 2.35
   },
-  'mw-14': {
-    position: [7.42, 2.35, -53.5],
-    rotation: [0, -Math.PI / 2, 0], // Right Wall (East) #1 (8.0m spacing!)
+  'art-14': {
+    position: [7.42, 2.35, -60.0],
+    rotation: [0, -Math.PI / 2, 0], // Junetta Origin
     baseHeight: 2.35
   },
-  'mw-15': {
-    position: [7.42, 2.35, -61.5],
-    rotation: [0, -Math.PI / 2, 0], // Right Wall (East) #2
-    baseHeight: 2.35
-  },
-  'mw-16': {
+  'art-15': {
     position: [0, 2.35, -68.72],
-    rotation: [0, 0, 0], // Flagship Finale Centered on North Wall (0.08m in front of -68.80 face)
+    rotation: [0, 0, 0], // Junetta The Wood Elf (Focal North Wall)
     baseHeight: 2.6
   },
 
   // =========================================================================
-  // ROOM 4: THE DRAWING STUDIO (Studies 1–8, Z = -73 to -93)
-  // Left cork board first (Studies 1–4) -> Right cork board (Studies 5–8)
+  // ROOM 4: THE DRAWING STUDIO (Mar 2026 – Jun 2026, Z = -73 to -93)
+  // West Corkboard (16–19) -> East Corkboard (20–23)
   // =========================================================================
-  'study-01': {
+  'art-16': {
     position: [-6.87, 2.2, -75.5],
-    rotation: [0, Math.PI / 2, 0], // Left Cork Board #1
+    rotation: [0, Math.PI / 2, 0], // The Traveler
     baseHeight: 1.85
   },
-  'study-02': {
+  'art-17': {
     position: [-6.87, 2.2, -80.0],
-    rotation: [0, Math.PI / 2, 0], // Left Cork Board #2
+    rotation: [0, Math.PI / 2, 0], // Maki and Billy
     baseHeight: 1.85
   },
-  'study-03': {
+  'art-18': {
     position: [-6.87, 2.2, -84.5],
-    rotation: [0, Math.PI / 2, 0], // Left Cork Board #3
+    rotation: [0, Math.PI / 2, 0], // Dappled Amber Gaze
     baseHeight: 1.85
   },
-  'study-04': {
+  'art-19': {
     position: [-6.87, 2.2, -89.0],
-    rotation: [0, Math.PI / 2, 0], // Left Cork Board #4
+    rotation: [0, Math.PI / 2, 0], // Chole
     baseHeight: 1.85
   },
-  'study-05': {
+  'art-20': {
     position: [6.87, 2.2, -75.5],
-    rotation: [0, -Math.PI / 2, 0], // Right Cork Board #1
+    rotation: [0, -Math.PI / 2, 0], // Maquia and Ariel
     baseHeight: 1.85
   },
-  'study-06': {
+  'art-21': {
     position: [6.87, 2.2, -80.0],
-    rotation: [0, -Math.PI / 2, 0], // Right Cork Board #2
+    rotation: [0, -Math.PI / 2, 0], // Long-tailed Tits
     baseHeight: 1.85
   },
-  'study-07': {
+  'art-22': {
     position: [6.87, 2.2, -84.5],
-    rotation: [0, -Math.PI / 2, 0], // Right Cork Board #3
+    rotation: [0, -Math.PI / 2, 0], // I Am Here For You
     baseHeight: 1.85
   },
-  'study-08': {
+  'art-23': {
     position: [6.87, 2.2, -89.0],
-    rotation: [0, -Math.PI / 2, 0], // Right Cork Board #4
+    rotation: [0, -Math.PI / 2, 0], // Expression Sketch
     baseHeight: 1.85
   },
 
   // =========================================================================
-  // ROOM 5: THE MASTER STUDY ARCHIVE (Studies 9–16, Z = -96 to -116)
-  // Left archival wall first (Studies 9–12) -> Right archival wall (Studies 13–16)
+  // ROOM 5: THE MASTER STUDY ARCHIVE (Aug 2026 – Sep 2026, Z = -96 to -116)
+  // West Archival Wall (24–27) -> East Archival Wall (28–31)
   // =========================================================================
-  'study-09': {
+  'art-24': {
     position: [-6.92, 2.2, -98.5],
-    rotation: [0, Math.PI / 2, 0], // Left Archival Wall #1
+    rotation: [0, Math.PI / 2, 0], // The Nerdy Brawl
     baseHeight: 1.85
   },
-  'study-10': {
+  'art-25': {
     position: [-6.92, 2.2, -103.0],
-    rotation: [0, Math.PI / 2, 0], // Left Archival Wall #2
+    rotation: [0, Math.PI / 2, 0], // Rotten Girl
     baseHeight: 1.85
   },
-  'study-11': {
+  'art-26': {
     position: [-6.92, 2.2, -107.5],
-    rotation: [0, Math.PI / 2, 0], // Left Archival Wall #3
+    rotation: [0, Math.PI / 2, 0], // Anxious Girl Sketch
     baseHeight: 1.85
   },
-  'study-12': {
+  'art-27': {
     position: [-6.92, 2.2, -112.0],
-    rotation: [0, Math.PI / 2, 0], // Left Archival Wall #4
+    rotation: [0, Math.PI / 2, 0], // Red Hoodie Girl with Her Cat
     baseHeight: 1.85
   },
-  'study-13': {
+  'art-28': {
     position: [6.92, 2.2, -98.5],
-    rotation: [0, -Math.PI / 2, 0], // Right Archival Wall #1
+    rotation: [0, -Math.PI / 2, 0], // American Teenager
     baseHeight: 1.85
   },
-  'study-14': {
+  'art-29': {
     position: [6.92, 2.2, -103.0],
-    rotation: [0, -Math.PI / 2, 0], // Right Archival Wall #2
+    rotation: [0, -Math.PI / 2, 0], // Crush
     baseHeight: 1.85
   },
-  'study-15': {
+  'art-30': {
     position: [6.92, 2.2, -107.5],
-    rotation: [0, -Math.PI / 2, 0], // Right Archival Wall #3
+    rotation: [0, -Math.PI / 2, 0], // The God-forsaken Pearl
     baseHeight: 1.85
   },
-  'study-16': {
+  'art-31': {
     position: [6.92, 2.2, -112.0],
-    rotation: [0, -Math.PI / 2, 0], // Right Archival Wall #4
+    rotation: [0, -Math.PI / 2, 0], // Long Way from Home
     baseHeight: 1.85
   }
 };
@@ -210,42 +208,44 @@ export function getArtworkTransform(id: string): ArtworkTransform {
 
 /**
  * Maps each artwork ID to its corresponding normalized promenade spline position (0..1)
- * so deep-linking, catalog jumping, or stepping through works keeps the walkthrough
- * camera positioned right in front of the current artwork when exiting inspection.
  */
 const ARTWORK_SCROLL_PROGRESS: Record<string, number> = {
-  'mw-01': 3 / 47,
-  'mw-02': 4 / 47,
-  'mw-03': 5 / 47,
-  'mw-04': 6 / 47,
-  'mw-05': 7 / 47,
-  'mw-06': 11 / 47,
-  'mw-07': 12 / 47,
-  'mw-08': 13 / 47,
-  'mw-09': 14 / 47,
-  'mw-10': 15 / 47,
-  'mw-11': 19 / 47,
-  'mw-12': 20 / 47,
-  'mw-13': 21 / 47,
-  'mw-14': 22 / 47,
-  'mw-15': 23 / 47,
-  'mw-16': 24 / 47,
-  'study-01': 28 / 47,
-  'study-02': 28.5 / 47,
-  'study-03': 29.5 / 47,
-  'study-04': 30 / 47,
-  'study-05': 31 / 47,
-  'study-06': 31.5 / 47,
-  'study-07': 32.5 / 47,
-  'study-08': 33 / 47,
-  'study-09': 37 / 47,
-  'study-10': 37.5 / 47,
-  'study-11': 38.5 / 47,
-  'study-12': 39 / 47,
-  'study-13': 41 / 47,
-  'study-14': 41.5 / 47,
-  'study-15': 42.5 / 47,
-  'study-16': 43 / 47
+  // Room 1: Sep 2020 – Mar 2022
+  'art-01': 3 / 46,
+  'art-02': 4 / 46,
+  'art-03': 5 / 46,
+  'art-04': 6 / 46,
+  'art-05': 7 / 46,
+  // Room 2: Apr 2022 – Sep 2022
+  'art-06': 11 / 46,
+  'art-07': 12 / 46,
+  'art-08': 13 / 46,
+  'art-09': 14 / 46,
+  'art-10': 15 / 46,
+  // Room 3: May 2023 – Oct 2024
+  'art-11': 19 / 46,
+  'art-12': 20 / 46,
+  'art-13': 21 / 46,
+  'art-14': 22 / 46,
+  'art-15': 23 / 46,
+  // Room 4: Mar 2026 – Jun 2026
+  'art-16': 27 / 46,
+  'art-17': 28 / 46,
+  'art-18': 29 / 46,
+  'art-19': 30 / 46,
+  'art-20': 31 / 46,
+  'art-21': 32 / 46,
+  'art-22': 33 / 46,
+  'art-23': 34 / 46,
+  // Room 5: Aug 2026 – Sep 2026
+  'art-24': 37 / 46,
+  'art-25': 38 / 46,
+  'art-26': 39 / 46,
+  'art-27': 40 / 46,
+  'art-28': 41 / 46,
+  'art-29': 42 / 46,
+  'art-30': 43 / 46,
+  'art-31': 44 / 46
 };
 
 export function getArtworkScrollProgress(id: string): number {
@@ -254,9 +254,6 @@ export function getArtworkScrollProgress(id: string): number {
 
 /**
  * Calculates dedicated inspection camera docking parameters.
- * Positions the camera square-on perpendicular to the wall,
- * shifting framing so the artwork sits in the LEFT 55% of the screen
- * with ZERO overlap from the Curatorial Placard on the right!
  */
 export function getInspectionCameraFraming(artwork: Artwork): {
   cameraPosition: THREE.Vector3;
@@ -266,23 +263,15 @@ export function getInspectionCameraFraming(artwork: Artwork): {
   const pos = new THREE.Vector3(...transform.position);
   const rot = new THREE.Euler(...transform.rotation);
 
-  // Surface normal pointing straight out from the canvas into the room
   const normal = new THREE.Vector3(0, 0, 1).applyEuler(rot);
-  // Horizontal right vector along the frame
   const right = new THREE.Vector3(1, 0, 0).applyEuler(rot);
 
   const baseHeight = transform.baseHeight;
   const width = Math.round(baseHeight * artwork.aspectRatio * 100) / 100;
 
-  // Compute exact optical distance for 46° vertical FOV so the entire shadowbox frame,
-  // overhead brass picture lamp, and scalloped wall halo are framed with generous margins
   const dist = Math.max(4.2, baseHeight * 1.78, width * 1.38);
-
-  // Shift viewport center slightly right (~14% of frustum width) so the artwork + lamp
-  // sit centered in the left 70% of the viewport with wide margins on BOTH left and right sides
   const shiftX = dist * 0.16;
 
-  // Elevate vertical center slightly (+0.08m) to include the brass picture lamp above the frame
   const cameraPosition = pos.clone()
     .add(new THREE.Vector3(0, 0.08, 0))
     .addScaledVector(normal, dist)

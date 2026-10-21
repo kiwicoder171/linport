@@ -90,8 +90,8 @@ export const FramedArtwork: React.FC<FramedArtworkProps> = ({
   const height = baseHeight;
   const width = Math.round(baseHeight * artwork.aspectRatio * 100) / 100;
 
-  // Floating Shadowbox Frame Profile Specifications
-  const isMasterwork = artwork.hall === 'hall-1';
+  // Floating Shadowbox Frame Profile Specifications (Rooms 1-3 Grand Salon, Rooms 4-5 Atelier & Archive)
+  const isMasterwork = artwork.room === 'room-1' || artwork.room === 'room-2' || artwork.room === 'room-3';
   const matBorder = isMasterwork ? 0 : 0.085;
   const frameThickness = isMasterwork ? 0.075 : 0.055;
   const frameDepth = 0.085;

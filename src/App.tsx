@@ -147,7 +147,7 @@ function MuseumLoader({
 
   const statusLabel =
     compileStage === 'downloading'
-      ? `LOADING 32 ARCHIVAL CANVASES · ${Math.round(progress)}%`
+      ? `LOADING 31 ARCHIVAL CANVASES · ${Math.round(progress)}%`
       : compileStage === 'vram-upload'
       ? 'UPLOADING TEXTURES TO GPU VRAM...'
       : compileStage === 'shader-compile'

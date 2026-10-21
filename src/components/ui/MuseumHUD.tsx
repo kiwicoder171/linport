@@ -28,12 +28,12 @@ export const MuseumHUD: React.FC<MuseumHUDProps> = ({
 
   const getZoneInfo = () => {
     if (scrollProgress < 0.06) return { num: '00', name: 'GRAND FOYER', range: 'ENTRANCE & CURATORIAL OVERVIEW' };
-    if (scrollProgress < 0.22) return { num: '01', name: 'PAVILION I · GENESIS', range: 'MASTERWORKS 01–05' };
-    if (scrollProgress < 0.42) return { num: '02', name: 'THE CENTRAL ROTUNDA', range: 'MASTERWORKS 06–10 · KINETIC DOME' };
-    if (scrollProgress < 0.62) return { num: '03', name: 'PAVILION II · VISIONS', range: 'MASTERWORKS 11–16 · SALON HORIZON' };
-    if (scrollProgress < 0.78) return { num: '04', name: 'THE DRAWING STUDIO', range: 'STUDIES 01–08 · ATELIER PINBOARDS' };
-    if (scrollProgress < 0.92) return { num: '05', name: 'THE STUDY ARCHIVE', range: 'STUDIES 09–16 · ARCHIVAL SHOWCASE' };
-    return { num: '06', name: 'CURATORIAL DESK', range: 'RETROSPECTIVE MONOGRAPH & INQUIRIES' };
+    if (scrollProgress < 0.22) return { num: '01', name: 'SEP 2020 – MAR 2022', range: 'ROOM I · WORKS 01–05' };
+    if (scrollProgress < 0.42) return { num: '02', name: 'APR 2022 – SEP 2022', range: 'ROOM II · THE ROTUNDA · WORKS 06–10' };
+    if (scrollProgress < 0.62) return { num: '03', name: 'MAY 2023 – OCT 2024', range: 'ROOM III · SALON · WORKS 11–15' };
+    if (scrollProgress < 0.78) return { num: '04', name: 'MAR 2026 – JUN 2026', range: 'ROOM IV · ATELIER · WORKS 16–23' };
+    if (scrollProgress < 0.92) return { num: '05', name: 'AUG 2026 – SEP 2026', range: 'ROOM V · THE ARCHIVE · WORKS 24–31' };
+    return { num: '06', name: 'CURATORIAL DESK', range: 'EXHIBITION MONOGRAPH & INQUIRIES' };
   };
 
   const zone = getZoneInfo();

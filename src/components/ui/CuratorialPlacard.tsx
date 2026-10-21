@@ -37,7 +37,6 @@ export const CuratorialPlacard: React.FC<CuratorialPlacardProps> = ({
 
   const currentIndex = ARTWORKS.findIndex(a => a.id === artwork.id);
   const totalArtworks = ARTWORKS.length;
-  const isMasterwork = artwork.hall === 'hall-1';
 
   const handleCopyDeepLink = () => {
     const url = `${window.location.origin}${window.location.pathname}#${artwork.id}`;
@@ -82,7 +81,7 @@ export const CuratorialPlacard: React.FC<CuratorialPlacardProps> = ({
         <div className="flex items-center justify-between pb-3 border-b border-white/10 mb-4">
           <div className="flex items-center gap-2">
             <span className="text-[10px] font-mono tracking-widest text-[#cba76b] uppercase font-bold">
-              {isMasterwork ? 'MASTERWORK FOLIO' : 'STUDY ARCHIVE'}
+              {artwork.roomName.toUpperCase()}
             </span>
             <span className="text-white/20">·</span>
             <span className="text-[10px] font-mono tracking-wider text-neutral-400">
@@ -136,33 +135,50 @@ export const CuratorialPlacard: React.FC<CuratorialPlacardProps> = ({
           {artwork.title || artwork.catalogIndex}
         </h2>
         <p className="text-[10px] font-mono tracking-widest text-[#cba76b] uppercase mb-4">
-          {artwork.catalogIndex} · {artwork.roomName || 'Exhibition Hall'}
+          {artwork.catalogIndex} · {artwork.period}
         </p>
 
-        {/* Technical Spec Ledger (Clean Typographic Lines, No Gimmick Icons) */}
-        <div className="space-y-2 py-3 border-y border-white/10 mb-4 text-[11px] font-mono">
+        {/* Technical Spec Ledger (Requested by Artist) */}
+        <div className="space-y-1.5 py-3 border-y border-white/10 mb-4 text-[11px] font-mono">
+          {artwork.category && (
+            <div className="flex items-baseline justify-between">
+              <span className="text-neutral-500 uppercase tracking-wider text-[10px]">Category</span>
+              <span className="text-neutral-200">{artwork.category}</span>
+            </div>
+          )}
+          {artwork.style && (
+            <div className="flex items-baseline justify-between">
+              <span className="text-neutral-500 uppercase tracking-wider text-[10px]">Style</span>
+              <span className="text-neutral-200">{artwork.style}</span>
+            </div>
+          )}
+          {artwork.software && (
+            <div className="flex items-baseline justify-between">
+              <span className="text-neutral-500 uppercase tracking-wider text-[10px]">Software</span>
+              <span className="text-neutral-200">{artwork.software}</span>
+            </div>
+          )}
+          {artwork.hardware && (
+            <div className="flex items-baseline justify-between">
+              <span className="text-neutral-500 uppercase tracking-wider text-[10px]">Hardware</span>
+              <span className="text-neutral-200">{artwork.hardware}</span>
+            </div>
+          )}
           <div className="flex items-baseline justify-between">
-            <span className="text-neutral-500 uppercase tracking-wider text-[10px]">Medium</span>
-            <span className="text-neutral-200 text-right">{artwork.medium}</span>
-          </div>
-          <div className="flex items-baseline justify-between">
-            <span className="text-neutral-500 uppercase tracking-wider text-[10px]">Date</span>
-            <span className="text-neutral-200">{artwork.year}</span>
-          </div>
-          <div className="flex items-baseline justify-between">
-            <span className="text-neutral-500 uppercase tracking-wider text-[10px]">Dimensions</span>
-            <span className="text-neutral-200">{artwork.width} × {artwork.height} px</span>
-          </div>
-          <div className="flex items-baseline justify-between">
-            <span className="text-neutral-500 uppercase tracking-wider text-[10px]">Accession</span>
-            <span className="text-neutral-400 text-[10px]">{artwork.id.toUpperCase()}</span>
+            <span className="text-neutral-500 uppercase tracking-wider text-[10px]">Resolution</span>
+            <span className="text-neutral-400 text-[10px]">{artwork.width} × {artwork.height} px</span>
           </div>
         </div>
 
-        {/* Curatorial Annotation */}
-        <p className="text-xs text-neutral-300 leading-relaxed font-light italic mb-5">
-          "{artwork.notes}"
-        </p>
+        {/* Curatorial Annotation (Artist's Own Description) */}
+        <div className="mb-5">
+          <span className="text-[9px] font-mono text-[#cba76b] uppercase tracking-widest block mb-1">
+            ARTIST'S NOTE
+          </span>
+          <p className="text-xs text-neutral-300 leading-relaxed font-light italic">
+            "{artwork.notes}"
+          </p>
+        </div>
 
         {/* Action Controls */}
         <div className="flex items-center gap-2">
