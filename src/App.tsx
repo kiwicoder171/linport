@@ -254,7 +254,16 @@ export default function App() {
         handleSelectArtwork(null);
       }
 
-      const delta = e.deltaY * 0.0003;
+      // Normalize line / page / pixel delta
+      let rawDelta = e.deltaY;
+      if (e.deltaMode === 1) rawDelta *= 24;
+      else if (e.deltaMode === 2) rawDelta *= 300;
+
+      // Clamp max single burst to prevent runaway skipping on notched scroll wheels
+      const cappedDelta = Math.max(-100, Math.min(100, rawDelta));
+      // Calibrate so 1 notch of scroll wheel (~80-100px) translates to ~0.007 (~0.7% progress)
+      // instead of jumping multiple artworks in a single click
+      const delta = cappedDelta * 0.000075;
       targetProgress.current = Math.max(0, Math.min(1, targetProgress.current + delta));
     };
 
@@ -271,7 +280,7 @@ export default function App() {
         handleSelectArtwork(null);
       }
       const currentY = e.touches[0].clientY;
-      const delta = (touchStartY - currentY) * 0.0006;
+      const delta = (touchStartY - currentY) * 0.00025;
       targetProgress.current = Math.max(0, Math.min(1, targetProgress.current + delta));
       touchStartY = currentY;
     };
@@ -300,9 +309,9 @@ export default function App() {
         }
       } else if (!inspectedArtwork && !lightboxArtwork && !isMinimapOpen) {
         if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') {
-          targetProgress.current = Math.min(1, targetProgress.current + 0.035);
+          targetProgress.current = Math.min(1, targetProgress.current + 0.012);
         } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
-          targetProgress.current = Math.max(0, targetProgress.current - 0.035);
+          targetProgress.current = Math.max(0, targetProgress.current - 0.012);
         }
       }
     };

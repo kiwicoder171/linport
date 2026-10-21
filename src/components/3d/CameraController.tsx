@@ -229,7 +229,7 @@ export const CameraController: React.FC<CameraControllerProps> = ({
       if (Math.abs(diff) < 0.00008) {
         smoothProgressRef.current = targetVal;
       } else {
-        smoothProgressRef.current += diff * Math.min(delta * 7.5, 0.22);
+        smoothProgressRef.current += diff * Math.min(delta * 5.2, 0.16);
       }
 
       const clampedProgress = Math.max(0, Math.min(1, smoothProgressRef.current));
