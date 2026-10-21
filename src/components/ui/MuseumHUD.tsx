@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { museumAudio } from '../../utils/audio';
-import { Artwork } from '../../data/artworks';
+import { Artwork, EXHIBITION_METADATA } from '../../data/artworks';
 
 interface MuseumHUDProps {
   scrollProgress: number;
@@ -46,10 +46,10 @@ export const MuseumHUD: React.FC<MuseumHUDProps> = ({
         {/* Gallery Masthead */}
         <div className="pointer-events-auto select-none">
           <h1 className="font-serif text-base sm:text-lg font-bold tracking-[0.25em] text-[#f2ede4] leading-tight">
-            LIN
+            {EXHIBITION_METADATA.artist.toUpperCase()}
           </h1>
           <p className="text-[10px] font-mono tracking-[0.2em] text-[#cba76b] uppercase mt-0.5">
-            SPATIAL RETROSPECTIVE · 2024–2026
+            {EXHIBITION_METADATA.exhibitionTitle.toUpperCase()}
           </p>
         </div>
 
@@ -120,8 +120,8 @@ export const MuseumHUD: React.FC<MuseumHUDProps> = ({
           </div>
         </div>
 
-        {/* Center/Right: Quiet Framing Trigger (When nearing artwork during walkthrough) */}
-        {activeArtwork && !isInspecting && (
+        {/* Center/Right: Quiet Framing Trigger OR Curatorial Inquiries */}
+        {activeArtwork && !isInspecting ? (
           <div className="pointer-events-auto animate-in fade-in slide-in-from-bottom-2 duration-200">
             <button
               onClick={onInspectActive}
@@ -141,7 +141,24 @@ export const MuseumHUD: React.FC<MuseumHUDProps> = ({
               </span>
             </button>
           </div>
-        )}
+        ) : scrollProgress >= 0.93 && !isInspecting ? (
+          <div className="pointer-events-auto animate-in fade-in slide-in-from-bottom-2 duration-200 flex items-center gap-2">
+            <a
+              href={EXHIBITION_METADATA.socials.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#121418]/90 border border-white/15 hover:border-[#cba76b] px-3.5 py-2 text-[10px] font-mono tracking-wider text-neutral-300 hover:text-white backdrop-blur-xl transition-all duration-200 flex items-center gap-2"
+            >
+              <span className="text-[#cba76b]">IG:</span> @{EXHIBITION_METADATA.socials.instagramHandle} ↗
+            </a>
+            <a
+              href={`mailto:${EXHIBITION_METADATA.socials.email}`}
+              className="bg-[#cba76b] text-black hover:bg-[#dfbd7f] font-mono font-bold text-[10px] tracking-wider px-3.5 py-2 transition-all duration-200 shadow-lg shadow-[#cba76b]/15"
+            >
+              INQUIRE / EMAIL ✉
+            </a>
+          </div>
+        ) : null}
       </footer>
     </div>
   );

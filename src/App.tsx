@@ -155,7 +155,7 @@ function MuseumLoader({
           {EXHIBITION_METADATA.artist.toUpperCase()}
         </span>
         <span className="text-[11px] font-mono tracking-[0.25em] text-[#cba76b] uppercase block mb-8">
-          SPATIAL RETROSPECTIVE · 2024–2026
+          {EXHIBITION_METADATA.exhibitionTitle.toUpperCase()}
         </span>
 
         {/* Minimal Hairline Progress */}

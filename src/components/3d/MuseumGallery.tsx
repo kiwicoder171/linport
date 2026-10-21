@@ -845,6 +845,15 @@ export const MuseumGallery: React.FC<MuseumGalleryProps> = ({
         >
           {EXHIBITION_METADATA.statement}
         </Text>
+        <Text
+          position={[0, 1.25, -6.3]}
+          fontSize={0.12}
+          color="#cba76b"
+          letterSpacing={0.16}
+          anchorX="center"
+        >
+          INSTAGRAM: @linpmr   ·   EMAIL: beelin.pmr@gmail.com
+        </Text>
       </group>
     </group>
   );

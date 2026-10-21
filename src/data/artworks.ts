@@ -576,14 +576,13 @@ export const STUDIES = ARTWORKS.filter(a => a.hall === 'hall-2');
 
 export const EXHIBITION_METADATA = {
   artist: "Lin",
-  exhibitionTitle: "Spatial Retrospective",
-  subtitle: "Masterworks & The Atelier Archive (2024–2026)",
-  statement: "Every canvas begins as a quiet observation of light, gesture, and human emotion. This spatial retrospective brings together sixteen finished masterworks alongside sixteen raw pages from the private drawing studio—inviting you to walk through the hours of experimentation behind every stroke.",
+  exhibitionTitle: "A Collection of Works",
+  subtitle: "Illustrations, characters, and other things I love to draw.",
+  statement: "A collection of illustrations and personal projects by Lin, featuring original characters and fan art that explore different styles and tell stories about connection, emotional expression, longing, love, and loneliness. This exhibition brings together a variety of works created over the years through practice and artistic exploration.",
   commissionStatus: "Commissions Open",
   socials: {
-    instagram: "https://instagram.com",
-    twitter: "https://x.com",
-    artstation: "https://artstation.com",
-    email: "contact@lin-portfolio.art"
+    instagram: "https://instagram.com/linpmr",
+    instagramHandle: "linpmr",
+    email: "beelin.pmr@gmail.com"
   }
 };
