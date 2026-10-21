@@ -32,9 +32,19 @@ function GpuPrecompiler({
   const startedRef = useRef(false);
 
   useEffect(() => {
-    if (startedRef.current) return;
+    // Safety guardrail: automatically open the curtain if VRAM/shader precompile takes longer than 3.5s
+    const safetyTimer = setTimeout(() => {
+      if (!startedRef.current) {
+        startedRef.current = true;
+        onStageChange('ready');
+        onComplete();
+      }
+    }, 3500);
+
+    if (startedRef.current) return () => clearTimeout(safetyTimer);
     if (!active && progress >= 100) {
       startedRef.current = true;
+      clearTimeout(safetyTimer);
 
       // Step 1: Upload all textures across all 6 rooms to GPU VRAM
       onStageChange('vram-upload');

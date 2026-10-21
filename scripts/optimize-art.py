@@ -35,7 +35,7 @@ SLOT_MAPPING = {
     "study-07": ("Dorothy.JPG", "study_07.webp", 1400, 82),
     "study-08": ("Late night in the city.JPG", "study_08.webp", 1400, 82),
     "study-09": ("Crying girl.JPG", "study_09.webp", 1400, 82),
-    "study-10": ("The devil sister.JPG", "study_10.webp", 1400, 82),
+    "study-10": ("The Demon Sister.JPG", "study_10.webp", 1400, 82),
     "study-11": ("Last stop.JPG", "study_11.webp", 1400, 82),
     "study-12": ("Crying fairy.JPG", "study_12.webp", 1400, 82),
     "study-14": ("Junetta the wood elf.JPG", "study_14.webp", 1400, 82),

@@ -453,7 +453,7 @@ export const ARTWORKS: Artwork[] = [
   {
     "id": "study-10",
     "catalogIndex": "Study #10",
-    "title": "The Devil Sister",
+    "title": "The Demon Sister",
     "hall": "hall-2",
     "medium": "Dynamic Low-Angle Concept",
     "year": "2024\u20132026",
@@ -461,7 +461,7 @@ export const ARTWORKS: Artwork[] = [
     "height": 1400,
     "aspectRatio": 1.0714,
     "textureUrl": "/art/study_10.webp",
-    "fullResUrl": "/art/full/The devil sister.JPG",
+    "fullResUrl": "/art/full/The Demon Sister.JPG",
     "notes": "Dramatic low-angle perspective and silhouette study featuring whipping dark tendrils, luminous body sigils, and smoky amethyst backlighting.",
     "fileSizeKb": 94.2,
     "room": "room-5",
