@@ -1,0 +1,3 @@
+# 0006: Multi-Room Gallery Architecture and Calm Forward Camera Motion
+
+We decided to transition from a single linear corridor into a multi-room museum floorplan (Grand Foyer, Pavilion I: Genesis, The Central Rotunda, Pavilion II: Visions, The Drawing Studio, The Study Archive, Curatorial Lounge) and replace lateral zigzag camera panning with a calm, forward-gliding camera motion. Alternating side-wall placements in a long hallway created rapid left-right oscillations during scrolling that induced motion sickness. Segmenting the museum into distinct curated rooms allows key masterworks to be presented on frontal feature walls and spacious alcove bays, giving visitors clear viewing angles without camera swerving.
