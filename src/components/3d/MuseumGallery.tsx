@@ -262,13 +262,13 @@ export const MuseumGallery: React.FC<MuseumGalleryProps> = ({
         {/* Ceiling with Recessed Daylight Skylight Coffer */}
         <mesh rotation={[Math.PI / 2, 0, 0]} position={[0, 5.2, 0]}>
           <planeGeometry args={[14, 20]} />
-          <meshStandardMaterial color="#3c3935" roughness={0.9} />
+          <meshStandardMaterial color="#c7beb1" roughness={0.9} />
         </mesh>
         {/* Recessed Skylight Cove Panel */}
         <mesh rotation={[Math.PI / 2, 0, 0]} position={[0, 5.18, 0]}>
           <planeGeometry args={[6.5, 12]} />
           <meshStandardMaterial
-            color="#4d4841"
+            color="#c7beb1"
             roughness={0.85}
             emissive="#ffefd2"
             emissiveIntensity={0.07}
@@ -294,7 +294,7 @@ export const MuseumGallery: React.FC<MuseumGalleryProps> = ({
         <mesh position={[-7.0, 2.6, 0]} rotation={[0, Math.PI / 2, 0]} receiveShadow>
           <planeGeometry args={[20, 5.2]} />
           <meshStandardMaterial
-            color="#6e6a63"
+            color="#c7beb1"
             bumpMap={plasterBump}
             bumpScale={0.012}
             roughness={0.76}
@@ -306,7 +306,7 @@ export const MuseumGallery: React.FC<MuseumGalleryProps> = ({
         <mesh position={[7.0, 2.6, 0]} rotation={[0, -Math.PI / 2, 0]} receiveShadow>
           <planeGeometry args={[20, 5.2]} />
           <meshStandardMaterial
-            color="#6e6a63"
+            color="#c7beb1"
             bumpMap={plasterBump}
             bumpScale={0.012}
             roughness={0.76}
@@ -318,7 +318,7 @@ export const MuseumGallery: React.FC<MuseumGalleryProps> = ({
         <mesh position={[-2.4, 2.6, -10]} castShadow receiveShadow>
           <boxGeometry args={[9.2, 5.2, 0.4]} />
           <meshStandardMaterial
-            color="#5e5a54"
+            color="#c7beb1"
             bumpMap={plasterBump}
             bumpScale={0.01}
             roughness={0.7}
@@ -328,11 +328,11 @@ export const MuseumGallery: React.FC<MuseumGalleryProps> = ({
 
         <mesh position={[6.2, 2.6, -10]} castShadow receiveShadow>
           <boxGeometry args={[1.6, 5.2, 0.4]} />
-          <meshStandardMaterial color="#5e5a54" roughness={0.7} />
+          <meshStandardMaterial color="#c7beb1" roughness={0.7} />
         </mesh>
         <mesh position={[3.8, 4.6, -10]} castShadow receiveShadow>
           <boxGeometry args={[4.2, 1.2, 0.4]} />
-          <meshStandardMaterial color="#5e5a54" roughness={0.7} />
+          <meshStandardMaterial color="#c7beb1" roughness={0.7} />
         </mesh>
         <DoorwayThreshold position={[3.8, 0, -10]} width={3.2} />
 
