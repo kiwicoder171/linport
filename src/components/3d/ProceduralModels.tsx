@@ -145,10 +145,10 @@ export const GalleryBench: React.FC<{
         <meshStandardMaterial color="#1a1c22" roughness={0.4} metalness={0.8} />
       </mesh>
 
-      {/* Solid Honed Travertine Stone Monolith */}
+      {/* Solid Honed Architectural Monolith (Matches Gallery Floor) */}
       <mesh position={[0, 0.25, 0]} castShadow receiveShadow>
         <boxGeometry args={[length, 0.34, 0.76]} />
-        <meshStandardMaterial color="#ece7de" roughness={0.65} metalness={0.05} />
+        <meshStandardMaterial color="#545148" roughness={0.92} metalness={0.02} />
       </mesh>
 
       {/* Travertine Accent Shadow Reveal Line */}

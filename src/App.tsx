@@ -362,7 +362,7 @@ export default function App() {
   );
 
   return (
-    <div className="relative w-screen h-screen overflow-hidden bg-[#0a0b0e]">
+    <div className="relative w-screen h-screen overflow-hidden bg-[#545148]">
       {/* Multi-Stage GPU Precompilation & Asset Loading Screen */}
       <MuseumLoader compileStage={compileStage} isGpuCompiled={isGpuCompiled} />
 
@@ -383,8 +383,8 @@ export default function App() {
         }}
         className="w-full h-full"
       >
-        <color attach="background" args={['#101217']} />
-        <fog attach="fog" args={['#101217', 26, 92]} />
+        <color attach="background" args={['#545148']} />
+        <fog attach="fog" args={['#545148', 35, 120]} />
         <CameraController
           targetProgressRef={targetProgress}
           inspectedArtwork={inspectedArtwork}

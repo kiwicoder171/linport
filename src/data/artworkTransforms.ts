@@ -112,42 +112,42 @@ export const ARTWORK_TRANSFORMS: Record<string, ArtworkTransform> = {
   // West Corkboard (16–19) -> East Corkboard (20–23)
   // =========================================================================
   'art-16': {
-    position: [-6.87, 2.2, -75.5],
+    position: [-6.92, 2.2, -75.5],
     rotation: [0, Math.PI / 2, 0], // The Traveler
     baseHeight: 1.85
   },
   'art-17': {
-    position: [-6.87, 2.2, -80.0],
+    position: [-6.92, 2.2, -80.0],
     rotation: [0, Math.PI / 2, 0], // Maki and Billy
     baseHeight: 1.85
   },
   'art-18': {
-    position: [-6.87, 2.2, -84.5],
+    position: [-6.92, 2.2, -84.5],
     rotation: [0, Math.PI / 2, 0], // Dappled Amber Gaze
     baseHeight: 1.85
   },
   'art-19': {
-    position: [-6.87, 2.2, -89.0],
+    position: [-6.92, 2.2, -89.0],
     rotation: [0, Math.PI / 2, 0], // Chole
     baseHeight: 1.85
   },
   'art-20': {
-    position: [6.87, 2.2, -75.5],
+    position: [6.92, 2.2, -75.5],
     rotation: [0, -Math.PI / 2, 0], // Maquia and Ariel
     baseHeight: 1.85
   },
   'art-21': {
-    position: [6.87, 2.2, -80.0],
+    position: [6.92, 2.2, -80.0],
     rotation: [0, -Math.PI / 2, 0], // Long-tailed Tits
     baseHeight: 1.85
   },
   'art-22': {
-    position: [6.87, 2.2, -84.5],
+    position: [6.92, 2.2, -84.5],
     rotation: [0, -Math.PI / 2, 0], // I Am Here For You
     baseHeight: 1.85
   },
   'art-23': {
-    position: [6.87, 2.2, -89.0],
+    position: [6.92, 2.2, -89.0],
     rotation: [0, -Math.PI / 2, 0], // Expression Sketch
     baseHeight: 1.85
   },

@@ -4,7 +4,8 @@ import * as THREE from 'three';
 import { Artwork, ARTWORKS } from '../../data/artworks';
 import {
   getCanvasWeaveTexture,
-  getLightHaloTexture
+  getLightHaloTexture,
+  getPlasterWallTexture
 } from '../../utils/proceduralTextures';
 
 // Eagerly preload all 32 artwork textures at startup so they download in parallel during the loading screen
@@ -85,6 +86,7 @@ export const FramedArtwork: React.FC<FramedArtworkProps> = ({
   // Procedural micro-textures (cached singletons)
   const canvasWeave = useMemo(() => getCanvasWeaveTexture(), []);
   const lightHalo = useMemo(() => getLightHaloTexture(), []);
+  const plasterBump = useMemo(() => getPlasterWallTexture(), []);
 
   // Compute physical dimensions preserving exact aspect ratio
   const height = baseHeight;
@@ -99,14 +101,29 @@ export const FramedArtwork: React.FC<FramedArtworkProps> = ({
 
   const outerWidth = width + (matBorder + shadowGap + frameThickness) * 2;
   const outerHeight = height + (matBorder + shadowGap + frameThickness) * 2;
+  const corkWidth = outerWidth + 0.76;
+  const corkHeight = outerHeight + 0.72;
   const lampWidth = Math.min(outerWidth * 0.68, 1.65);
 
   const isHighlighted = hovered || isInspected;
 
   return (
     <group position={position} rotation={rotation}>
-      {/* 0. Scalloped Museum Spotlight Wall Wash Halo (Simulates halogen wall grazing without per-frame pointLight lag) */}
-      <mesh position={[0, 0.12, -0.072]} renderOrder={1} raycast={NO_RAYCAST}>
+      {/* 0a. Tailored Cork Pinboard Mount — Dynamically sized to match each frame's exact dimensions */}
+      <mesh position={[0, 0, -0.072]} raycast={NO_RAYCAST}>
+        <planeGeometry args={[corkWidth, corkHeight]} />
+        <meshStandardMaterial
+          color="#6e573e"
+          bumpMap={plasterBump}
+          bumpScale={0.018}
+          roughness={0.92}
+          polygonOffset
+          polygonOffsetFactor={-1}
+        />
+      </mesh>
+
+      {/* 0b. Scalloped Museum Spotlight Wall Wash Halo (Simulates halogen wall grazing without per-frame pointLight lag) */}
+      <mesh position={[0, 0.12, -0.069]} renderOrder={1} raycast={NO_RAYCAST}>
         <planeGeometry args={[outerWidth * 2.15, outerHeight * 2.05]} />
         <meshBasicMaterial
           map={lightHalo}
@@ -115,7 +132,7 @@ export const FramedArtwork: React.FC<FramedArtworkProps> = ({
           blending={THREE.AdditiveBlending}
           depthWrite={false}
           polygonOffset
-          polygonOffsetFactor={-1}
+          polygonOffsetFactor={-2}
         />
       </mesh>
 
@@ -184,7 +201,7 @@ export const FramedArtwork: React.FC<FramedArtworkProps> = ({
       </group>
 
       {/* 2. Architectural Drop-Shadow Base Plate */}
-      <mesh position={[0, -0.035, -0.068]} material={SHARED_SHADOW_MAT} raycast={NO_RAYCAST}>
+      <mesh position={[0, -0.035, -0.066]} material={SHARED_SHADOW_MAT} raycast={NO_RAYCAST}>
         <planeGeometry args={[outerWidth + 0.06, outerHeight + 0.06]} />
       </mesh>
 
@@ -207,11 +224,11 @@ export const FramedArtwork: React.FC<FramedArtworkProps> = ({
       >
         <boxGeometry args={[outerWidth, outerHeight, 0.048]} />
         <meshStandardMaterial
-          color={isMasterwork ? (hovered ? '#25211b' : '#141519') : '#3b2b1d'}
-          roughness={isMasterwork ? 0.32 : 0.52}
-          metalness={isMasterwork ? 0.28 : 0.08}
-          emissive={isHighlighted ? '#cba76b' : '#000000'}
-          emissiveIntensity={isHighlighted ? 0.16 : 0}
+          color="#cba76b"
+          roughness={0.24}
+          metalness={0.88}
+          emissive="#cba76b"
+          emissiveIntensity={isHighlighted ? 0.24 : 0.08}
         />
       </mesh>
 

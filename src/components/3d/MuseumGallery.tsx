@@ -1,4 +1,5 @@
 import React, { Suspense, useMemo } from 'react';
+import * as THREE from 'three';
 import { Text, Sparkles } from '@react-three/drei';
 import { Artwork, ARTWORKS, EXHIBITION_METADATA } from '../../data/artworks';
 import { getArtworkTransform } from '../../data/artworkTransforms';
@@ -128,10 +129,10 @@ export const MuseumGallery: React.FC<MuseumGalleryProps> = ({
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.002, -28]}>
         <planeGeometry args={[18, 86]} />
         <meshStandardMaterial
-          color="#262523"
+          color="#545148"
           bumpMap={plasterBump}
           bumpScale={0.004}
-          roughness={0.95}
+          roughness={0.92}
           metalness={0.02}
         />
       </mesh>
@@ -144,12 +145,12 @@ export const MuseumGallery: React.FC<MuseumGalleryProps> = ({
         {/* Ceiling */}
         <mesh rotation={[Math.PI / 2, 0, 0]} position={[0, 5.2, 0]}>
           <planeGeometry args={[14, 12]} />
-          <meshStandardMaterial color="#3c3935" roughness={0.9} />
+          <meshStandardMaterial color="#c7beb1" roughness={0.9} />
         </mesh>
         {/* South Entrance Wall */}
-        <mesh position={[0, 2.6, 5]}>
-          <planeGeometry args={[14, 5.2]} />
-          <meshStandardMaterial color="#181a20" roughness={0.7} />
+        <mesh position={[0, 2.6, 5]} castShadow receiveShadow>
+          <boxGeometry args={[14, 5.2, 0.4]} />
+          <meshStandardMaterial color="#68645d" roughness={0.7} />
         </mesh>
         {/* West Wall */}
         <mesh position={[-6.5, 2.6, 0]} rotation={[0, Math.PI / 2, 0]} receiveShadow>
@@ -176,33 +177,33 @@ export const MuseumGallery: React.FC<MuseumGalleryProps> = ({
         <WallBaseboard position={[6.5, 0, 0]} rotation={[0, -Math.PI / 2, 0]} length={10} />
 
         {/* North Portal Partition Wall into Room 1 (Z = -5 relative to group = Z = 2 world) */}
-        <mesh position={[-4.8, 2.6, -5]} castShadow receiveShadow>
-          <boxGeometry args={[3.4, 5.2, 0.5]} />
+        <mesh position={[-5.05, 2.6, -5]} castShadow receiveShadow>
+          <boxGeometry args={[3.9, 5.2, 0.5]} />
           <meshStandardMaterial
-            color="#3e3c38"
+            color="#68645d"
             bumpMap={plasterBump}
             bumpScale={0.008}
             roughness={0.62}
             metalness={0.08}
           />
         </mesh>
-        <mesh position={[4.8, 2.6, -5]} castShadow receiveShadow>
-          <boxGeometry args={[3.4, 5.2, 0.5]} />
+        <mesh position={[5.05, 2.6, -5]} castShadow receiveShadow>
+          <boxGeometry args={[3.9, 5.2, 0.5]} />
           <meshStandardMaterial
-            color="#3e3c38"
+            color="#68645d"
             bumpMap={plasterBump}
             bumpScale={0.008}
             roughness={0.62}
             metalness={0.08}
           />
         </mesh>
-        {/* Overhead Doorway Header Beam */}
+        {/* Overhead Doorway Header Beam (Exact 6.2m width flush between pylons, zero overlap) */}
         <mesh position={[0, 4.7, -5]} castShadow receiveShadow>
-          <boxGeometry args={[13.2, 1.0, 0.5]} />
-          <meshStandardMaterial color="#3e3c38" roughness={0.62} metalness={0.08} />
+          <boxGeometry args={[6.2, 1.0, 0.5]} />
+          <meshStandardMaterial color="#68645d" roughness={0.62} metalness={0.08} />
         </mesh>
         <mesh position={[0, 4.18, -4.73]}>
-          <boxGeometry args={[13.24, 0.04, 0.02]} />
+          <boxGeometry args={[6.2, 0.04, 0.02]} />
           <meshStandardMaterial color="#cba76b" roughness={0.2} metalness={0.92} />
         </mesh>
 
@@ -259,6 +260,18 @@ export const MuseumGallery: React.FC<MuseumGalleryProps> = ({
           Enclosed 14m x 20m salon with West, East, and North feature walls
          ========================================================================= */}
       <group position={[0, 0, -8]}>
+        {/* Room 1 Architectural Floor */}
+        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.001, 0]} receiveShadow>
+          <planeGeometry args={[14, 20]} />
+          <meshStandardMaterial
+            color="#545148"
+            bumpMap={plasterBump}
+            bumpScale={0.004}
+            roughness={0.92}
+            metalness={0.02}
+          />
+        </mesh>
+
         {/* Ceiling with Recessed Daylight Skylight Coffer */}
         <mesh rotation={[Math.PI / 2, 0, 0]} position={[0, 5.2, 0]}>
           <planeGeometry args={[14, 20]} />
@@ -291,8 +304,8 @@ export const MuseumGallery: React.FC<MuseumGalleryProps> = ({
         />
 
         {/* West Wall */}
-        <mesh position={[-7.0, 2.6, 0]} rotation={[0, Math.PI / 2, 0]} receiveShadow>
-          <planeGeometry args={[20, 5.2]} />
+        <mesh position={[-7.0, 2.6, -0.125]} rotation={[0, Math.PI / 2, 0]} receiveShadow>
+          <planeGeometry args={[19.75, 5.2]} />
           <meshStandardMaterial
             color="#c7beb1"
             bumpMap={plasterBump}
@@ -300,11 +313,11 @@ export const MuseumGallery: React.FC<MuseumGalleryProps> = ({
             roughness={0.76}
           />
         </mesh>
-        <WallBaseboard position={[-7.0, 0, 0]} rotation={[0, Math.PI / 2, 0]} length={20} />
+        <WallBaseboard position={[-7.0, 0, -0.125]} rotation={[0, Math.PI / 2, 0]} length={19.75} />
 
         {/* East Wall */}
-        <mesh position={[7.0, 2.6, 0]} rotation={[0, -Math.PI / 2, 0]} receiveShadow>
-          <planeGeometry args={[20, 5.2]} />
+        <mesh position={[7.0, 2.6, -0.125]} rotation={[0, -Math.PI / 2, 0]} receiveShadow>
+          <planeGeometry args={[19.75, 5.2]} />
           <meshStandardMaterial
             color="#c7beb1"
             bumpMap={plasterBump}
@@ -312,7 +325,7 @@ export const MuseumGallery: React.FC<MuseumGalleryProps> = ({
             roughness={0.76}
           />
         </mesh>
-        <WallBaseboard position={[7.0, 0, 0]} rotation={[0, -Math.PI / 2, 0]} length={20} />
+        <WallBaseboard position={[7.0, 0, -0.125]} rotation={[0, -Math.PI / 2, 0]} length={19.75} />
 
         {/* North Wall with Feature Wall holding Masterwork #03 & Exit Doorway to Room 2 */}
         <mesh position={[-2.4, 2.6, -10]} castShadow receiveShadow>
@@ -326,13 +339,25 @@ export const MuseumGallery: React.FC<MuseumGalleryProps> = ({
         </mesh>
         <WallBaseboard position={[-2.4, 0, -9.8]} rotation={[0, 0, 0]} length={9.2} />
 
+        {/* Right Portal Pylon (Matching North Wall #c7beb1 with zero overlap) */}
         <mesh position={[6.2, 2.6, -10]} castShadow receiveShadow>
           <boxGeometry args={[1.6, 5.2, 0.4]} />
-          <meshStandardMaterial color="#c7beb1" roughness={0.7} />
+          <meshStandardMaterial
+            color="#c7beb1"
+            bumpMap={plasterBump}
+            bumpScale={0.01}
+            roughness={0.7}
+          />
         </mesh>
+        {/* Overhead Doorway Header Beam (Exact width 3.2m, perfectly flush between pylons) */}
         <mesh position={[3.8, 4.6, -10]} castShadow receiveShadow>
-          <boxGeometry args={[4.2, 1.2, 0.4]} />
-          <meshStandardMaterial color="#c7beb1" roughness={0.7} />
+          <boxGeometry args={[3.2, 1.2, 0.4]} />
+          <meshStandardMaterial
+            color="#c7beb1"
+            bumpMap={plasterBump}
+            bumpScale={0.01}
+            roughness={0.7}
+          />
         </mesh>
         <DoorwayThreshold position={[3.8, 0, -10]} width={3.2} />
 
@@ -366,6 +391,29 @@ export const MuseumGallery: React.FC<MuseumGalleryProps> = ({
         })}
       </Suspense>
 
+      {/* Enclosed Promenade Corridor from Room 1 into Room 2 (world Z = -18.2 to -23.6) */}
+      <group position={[0, 0, 0]}>
+        {/* West Corridor Wall */}
+        <mesh position={[-0.2, 2.6, -20.9]} rotation={[0, 2.415, 0]} receiveShadow>
+          <planeGeometry args={[7.23, 5.2]} />
+          <meshStandardMaterial color="#c7beb1" bumpMap={plasterBump} bumpScale={0.012} roughness={0.76} />
+        </mesh>
+        <WallBaseboard position={[-0.2, 0, -20.9]} rotation={[0, 2.415, 0]} length={7.23} />
+
+        {/* East Corridor Wall */}
+        <mesh position={[4.0, 2.6, -20.9]} rotation={[0, -1.093, 0]} receiveShadow>
+          <planeGeometry args={[6.08, 5.2]} />
+          <meshStandardMaterial color="#c7beb1" bumpMap={plasterBump} bumpScale={0.012} roughness={0.76} />
+        </mesh>
+        <WallBaseboard position={[4.0, 0, -20.9]} rotation={[0, -1.093, 0]} length={6.08} />
+
+        {/* Corridor Ceiling */}
+        <mesh position={[1.9, 5.2, -20.9]} rotation={[Math.PI / 2, 0, 0]}>
+          <planeGeometry args={[7.0, 5.5]} />
+          <meshStandardMaterial color="#c7beb1" roughness={0.9} />
+        </mesh>
+      </group>
+
       {/* =========================================================================
           ROOM 2: THE CENTRAL ROTUNDA (Masterworks 6–10, Center: [0, 0, -33])
           Grand octagonal rotunda with perimeter niches framing kinetic chandelier
@@ -374,17 +422,34 @@ export const MuseumGallery: React.FC<MuseumGalleryProps> = ({
         {/* Rotunda Dome Ceiling with Central Recessed Skylight */}
         <mesh rotation={[Math.PI / 2, 0, 0]} position={[0, 5.2, 0]}>
           <circleGeometry args={[12.5, 48]} />
-          <meshStandardMaterial color="#383530" roughness={0.9} />
+          <meshStandardMaterial color="#c7beb1" roughness={0.9} />
         </mesh>
         <mesh rotation={[Math.PI / 2, 0, 0]} position={[0, 5.18, 0]}>
           <circleGeometry args={[4.2, 48]} />
           <meshStandardMaterial
-            color="#4d4841"
+            color="#c7beb1"
             roughness={0.85}
             emissive="#ffefd2"
-            emissiveIntensity={0.08}
+            emissiveIntensity={0.07}
           />
         </mesh>
+
+        {/* South Portal Lintel connecting from Room 1 Corridor */}
+        <group position={[0, 2.6, 9.4]}>
+          <mesh position={[-3.4, 0, 0]}>
+            <boxGeometry args={[1.6, 5.2, 0.5]} />
+            <meshStandardMaterial color="#c7beb1" roughness={0.7} />
+          </mesh>
+          <mesh position={[3.4, 0, 0]}>
+            <boxGeometry args={[1.6, 5.2, 0.5]} />
+            <meshStandardMaterial color="#c7beb1" roughness={0.7} />
+          </mesh>
+          <mesh position={[0, 2.1, 0]}>
+            <boxGeometry args={[8.4, 1.0, 0.5]} />
+            <meshStandardMaterial color="#c7beb1" roughness={0.7} />
+          </mesh>
+        </group>
+        <DoorwayThreshold position={[0, 0, 9.4]} width={5.2} />
 
         {/* Dedicated Warm Spotlight on Kinetic Chandelier & Medallion */}
         <pointLight position={[0, 4.8, 0]} intensity={2.4} color="#ffefd2" distance={9} decay={1.6} />
@@ -402,60 +467,60 @@ export const MuseumGallery: React.FC<MuseumGalleryProps> = ({
 
         {/* Watertight Octagonal Rotunda Wall Bays (Inward-Facing Normals) */}
         {/* SW Diagonal Wall */}
-        <mesh position={[-5.6, 2.6, 9.2]} rotation={[0, (3 * Math.PI) / 4, 0]}>
-          <planeGeometry args={[6.5, 5.2]} />
-          <meshStandardMaterial color="#66625b" bumpMap={plasterBump} bumpScale={0.012} roughness={0.75} />
+        <mesh position={[-6.0, 2.6, 7.6]} rotation={[0, (3 * Math.PI) / 4, 0]}>
+          <planeGeometry args={[5.1, 5.2]} />
+          <meshStandardMaterial color="#c7beb1" bumpMap={plasterBump} bumpScale={0.012} roughness={0.75} />
         </mesh>
-        <WallBaseboard position={[-5.6, 0, 9.2]} rotation={[0, (3 * Math.PI) / 4, 0]} length={6.5} />
+        <WallBaseboard position={[-6.0, 0, 7.6]} rotation={[0, (3 * Math.PI) / 4, 0]} length={5.1} />
 
         {/* West Wall (Holds MW 06 & MW 07) */}
-        <mesh position={[-7.8, 2.6, 1.0]} rotation={[0, Math.PI / 2, 0]}>
+        <mesh position={[-7.8, 2.6, 1.0]} rotation={[0, Math.PI / 2, 0]} receiveShadow>
           <planeGeometry args={[12.4, 5.2]} />
-          <meshStandardMaterial color="#66625b" bumpMap={plasterBump} bumpScale={0.012} roughness={0.75} />
+          <meshStandardMaterial color="#c7beb1" bumpMap={plasterBump} bumpScale={0.012} roughness={0.75} />
         </mesh>
         <WallBaseboard position={[-7.8, 0, 1.0]} rotation={[0, Math.PI / 2, 0]} length={12.4} />
 
         {/* NW Diagonal Bay (Holds MW 08 — faces South-East toward visitor!) */}
         <mesh position={[-5.6, 2.6, -7.2]} rotation={[0, Math.PI / 4, 0]}>
           <planeGeometry args={[6.5, 5.2]} />
-          <meshStandardMaterial color="#66625b" bumpMap={plasterBump} bumpScale={0.012} roughness={0.75} />
+          <meshStandardMaterial color="#c7beb1" bumpMap={plasterBump} bumpScale={0.012} roughness={0.75} />
         </mesh>
         <WallBaseboard position={[-5.6, 0, -7.2]} rotation={[0, Math.PI / 4, 0]} length={6.5} />
 
         {/* NE Diagonal Bay (Holds MW 09 — faces South-West toward visitor!) */}
         <mesh position={[5.6, 2.6, -7.2]} rotation={[0, -Math.PI / 4, 0]}>
           <planeGeometry args={[6.5, 5.2]} />
-          <meshStandardMaterial color="#66625b" bumpMap={plasterBump} bumpScale={0.012} roughness={0.75} />
+          <meshStandardMaterial color="#c7beb1" bumpMap={plasterBump} bumpScale={0.012} roughness={0.75} />
         </mesh>
         <WallBaseboard position={[5.6, 0, -7.2]} rotation={[0, -Math.PI / 4, 0]} length={6.5} />
 
         {/* East Wall (Holds MW 10) */}
         <mesh position={[7.8, 2.6, 1.0]} rotation={[0, -Math.PI / 2, 0]}>
           <planeGeometry args={[12.4, 5.2]} />
-          <meshStandardMaterial color="#66625b" bumpMap={plasterBump} bumpScale={0.012} roughness={0.75} />
+          <meshStandardMaterial color="#c7beb1" bumpMap={plasterBump} bumpScale={0.012} roughness={0.75} />
         </mesh>
         <WallBaseboard position={[7.8, 0, 1.0]} rotation={[0, -Math.PI / 2, 0]} length={12.4} />
 
         {/* SE Diagonal Wall */}
-        <mesh position={[5.6, 2.6, 9.2]} rotation={[0, (-3 * Math.PI) / 4, 0]}>
-          <planeGeometry args={[6.5, 5.2]} />
-          <meshStandardMaterial color="#66625b" bumpMap={plasterBump} bumpScale={0.012} roughness={0.75} />
+        <mesh position={[6.0, 2.6, 7.6]} rotation={[0, (-3 * Math.PI) / 4, 0]}>
+          <planeGeometry args={[5.1, 5.2]} />
+          <meshStandardMaterial color="#c7beb1" bumpMap={plasterBump} bumpScale={0.012} roughness={0.75} />
         </mesh>
-        <WallBaseboard position={[5.6, 0, 9.2]} rotation={[0, (-3 * Math.PI) / 4, 0]} length={6.5} />
+        <WallBaseboard position={[6.0, 0, 7.6]} rotation={[0, (-3 * Math.PI) / 4, 0]} length={5.1} />
 
         {/* North Portal Lintel leading into Room 3 */}
         <group position={[0, 2.6, -9.4]}>
           <mesh position={[-3.4, 0, 0]}>
             <boxGeometry args={[1.6, 5.2, 0.5]} />
-            <meshStandardMaterial color="#58544e" roughness={0.65} />
+            <meshStandardMaterial color="#c7beb1" roughness={0.7} />
           </mesh>
           <mesh position={[3.4, 0, 0]}>
             <boxGeometry args={[1.6, 5.2, 0.5]} />
-            <meshStandardMaterial color="#58544e" roughness={0.65} />
+            <meshStandardMaterial color="#c7beb1" roughness={0.7} />
           </mesh>
           <mesh position={[0, 2.1, 0]}>
             <boxGeometry args={[8.4, 1.0, 0.5]} />
-            <meshStandardMaterial color="#58544e" roughness={0.65} />
+            <meshStandardMaterial color="#c7beb1" roughness={0.7} />
           </mesh>
           <Text position={[0, 2.1, 0.28]} fontSize={0.16} color="#cba76b" letterSpacing={0.16} anchorX="center">
             ROOM III · MAY 2023 – OCT 2024 →
@@ -489,6 +554,25 @@ export const MuseumGallery: React.FC<MuseumGalleryProps> = ({
         })}
       </Suspense>
 
+      {/* Enclosed Vestibule from Room 2 into Room 3 (world Z = -42.4 to -45) */}
+      <group position={[0, 0, 0]}>
+        {/* West Connector Wall */}
+        <mesh position={[-3.8, 2.6, -43.7]} rotation={[0, Math.PI / 2, 0]} receiveShadow>
+          <planeGeometry args={[3.0, 5.2]} />
+          <meshStandardMaterial color="#c7beb1" bumpMap={plasterBump} bumpScale={0.012} roughness={0.76} />
+        </mesh>
+        {/* East Connector Wall */}
+        <mesh position={[3.8, 2.6, -43.7]} rotation={[0, -Math.PI / 2, 0]} receiveShadow>
+          <planeGeometry args={[3.0, 5.2]} />
+          <meshStandardMaterial color="#c7beb1" bumpMap={plasterBump} bumpScale={0.012} roughness={0.76} />
+        </mesh>
+        {/* Ceiling */}
+        <mesh position={[0, 5.2, -43.7]} rotation={[Math.PI / 2, 0, 0]}>
+          <planeGeometry args={[8.0, 3.0]} />
+          <meshStandardMaterial color="#c7beb1" roughness={0.9} />
+        </mesh>
+      </group>
+
       {/* =========================================================================
           ROOM 3: PAVILION II · VISIONS (Masterworks 11–16, Z = -45 to -69)
           Grand 15m x 24m salon culminating in flagship Masterwork #16
@@ -497,12 +581,12 @@ export const MuseumGallery: React.FC<MuseumGalleryProps> = ({
         {/* Ceiling with Recessed Daylight Skylight */}
         <mesh rotation={[Math.PI / 2, 0, 0]} position={[0, 5.2, 0]}>
           <planeGeometry args={[15, 24]} />
-          <meshStandardMaterial color="#3c3935" roughness={0.9} />
+          <meshStandardMaterial color="#c7beb1" roughness={0.9} />
         </mesh>
         <mesh rotation={[Math.PI / 2, 0, 0]} position={[0, 5.18, 0]}>
           <planeGeometry args={[7.5, 14]} />
           <meshStandardMaterial
-            color="#4d4841"
+            color="#c7beb1"
             roughness={0.85}
             emissive="#ffefd2"
             emissiveIntensity={0.07}
@@ -528,7 +612,7 @@ export const MuseumGallery: React.FC<MuseumGalleryProps> = ({
         <mesh position={[-7.5, 2.6, 0]} rotation={[0, Math.PI / 2, 0]} receiveShadow>
           <planeGeometry args={[24, 5.2]} />
           <meshStandardMaterial
-            color="#6e6a63"
+            color="#c7beb1"
             bumpMap={plasterBump}
             bumpScale={0.012}
             roughness={0.76}
@@ -540,7 +624,7 @@ export const MuseumGallery: React.FC<MuseumGalleryProps> = ({
         <mesh position={[7.5, 2.6, 0]} rotation={[0, -Math.PI / 2, 0]} receiveShadow>
           <planeGeometry args={[24, 5.2]} />
           <meshStandardMaterial
-            color="#6e6a63"
+            color="#c7beb1"
             bumpMap={plasterBump}
             bumpScale={0.012}
             roughness={0.76}
@@ -552,7 +636,7 @@ export const MuseumGallery: React.FC<MuseumGalleryProps> = ({
         <mesh position={[0, 2.6, -12]} castShadow receiveShadow>
           <boxGeometry args={[6.8, 5.2, 0.4]} />
           <meshStandardMaterial
-            color="#5e5a54"
+            color="#c7beb1"
             bumpMap={plasterBump}
             bumpScale={0.01}
             roughness={0.7}
@@ -562,27 +646,58 @@ export const MuseumGallery: React.FC<MuseumGalleryProps> = ({
 
         {/* Left Exit Portal to Drawing Studio */}
         <mesh position={[-6.2, 2.6, -12]} castShadow receiveShadow>
-          <boxGeometry args={[2.4, 5.2, 0.4]} />
-          <meshStandardMaterial color="#5e5a54" roughness={0.7} />
+          <boxGeometry args={[2.6, 5.2, 0.4]} />
+          <meshStandardMaterial color="#c7beb1" roughness={0.7} />
         </mesh>
         <mesh position={[-4.0, 4.6, -12]} castShadow receiveShadow>
           <boxGeometry args={[3.2, 1.2, 0.4]} />
-          <meshStandardMaterial color="#5e5a54" roughness={0.7} />
+          <meshStandardMaterial color="#c7beb1" roughness={0.7} />
         </mesh>
         {/* Right Exit Portal to Drawing Studio */}
         <mesh position={[6.2, 2.6, -12]} castShadow receiveShadow>
-          <boxGeometry args={[2.4, 5.2, 0.4]} />
-          <meshStandardMaterial color="#5e5a54" roughness={0.7} />
+          <boxGeometry args={[2.6, 5.2, 0.4]} />
+          <meshStandardMaterial color="#c7beb1" roughness={0.7} />
         </mesh>
         <mesh position={[4.0, 4.6, -12]} castShadow receiveShadow>
           <boxGeometry args={[3.2, 1.2, 0.4]} />
-          <meshStandardMaterial color="#5e5a54" roughness={0.7} />
+          <meshStandardMaterial color="#c7beb1" roughness={0.7} />
         </mesh>
         <DoorwayThreshold position={[4.0, 0, -12]} width={2.8} />
 
         <Text position={[4.0, 4.3, -11.78]} fontSize={0.15} color="#cba76b" letterSpacing={0.14} anchorX="center">
           TO ROOM IV · MAR 2026 – JUN 2026 →
         </Text>
+
+        {/* South Wall Enclosure (Zero-Overlap Orthogonal Planes meeting at 90°) */}
+        <mesh position={[-5.65, 2.6, 12]} rotation={[0, Math.PI, 0]} receiveShadow>
+          <planeGeometry args={[3.7, 5.2]} />
+          <meshStandardMaterial
+            color="#c7beb1"
+            bumpMap={plasterBump}
+            bumpScale={0.012}
+            roughness={0.76}
+          />
+        </mesh>
+        <WallBaseboard position={[-5.6, 0, 11.96]} rotation={[0, Math.PI, 0]} length={3.5} />
+
+        <mesh position={[5.65, 2.6, 12]} rotation={[0, Math.PI, 0]} receiveShadow>
+          <planeGeometry args={[3.7, 5.2]} />
+          <meshStandardMaterial
+            color="#c7beb1"
+            bumpMap={plasterBump}
+            bumpScale={0.012}
+            roughness={0.76}
+          />
+        </mesh>
+        <WallBaseboard position={[5.6, 0, 11.96]} rotation={[0, Math.PI, 0]} length={3.5} />
+
+        {/* South Portal Lintel Beam above entrance */}
+        <mesh position={[0, 4.6, 12]} rotation={[0, Math.PI, 0]} receiveShadow>
+          <planeGeometry args={[7.6, 1.2]} />
+          <meshStandardMaterial color="#c7beb1" roughness={0.7} />
+        </mesh>
+        <DoorwayThreshold position={[0, 0, 12]} width={7.6} />
+
         <Text position={[0, 4.8, 11.78]} fontSize={0.22} color="#cba76b" letterSpacing={0.2} anchorX="center">
           ROOM III · MAY 2023 – OCT 2024
         </Text>
@@ -608,20 +723,45 @@ export const MuseumGallery: React.FC<MuseumGalleryProps> = ({
         })}
       </Suspense>
 
+      {/* Enclosed Transition Corridor from Room 3 into Room 4 (world Z = -69.2 to -73.0, zero overlap) */}
+      <group position={[0, 0, 0]}>
+        {/* West Connector Wall */}
+        <mesh position={[-7.0, 2.6, -71.1]} rotation={[0, Math.PI / 2, 0]} receiveShadow>
+          <planeGeometry args={[3.8, 5.2]} />
+          <meshStandardMaterial color="#c7beb1" bumpMap={plasterBump} bumpScale={0.012} roughness={0.76} />
+        </mesh>
+        {/* East Connector Wall */}
+        <mesh position={[7.0, 2.6, -71.1]} rotation={[0, -Math.PI / 2, 0]} receiveShadow>
+          <planeGeometry args={[3.8, 5.2]} />
+          <meshStandardMaterial color="#c7beb1" bumpMap={plasterBump} bumpScale={0.012} roughness={0.76} />
+        </mesh>
+        {/* Connector Ceiling */}
+        <mesh position={[0, 5.2, -71.1]} rotation={[Math.PI / 2, 0, 0]}>
+          <planeGeometry args={[14.0, 3.8]} />
+          <meshStandardMaterial color="#c7beb1" roughness={0.9} />
+        </mesh>
+      </group>
+
       {/* =========================================================================
           ROOM 4: THE DRAWING STUDIO (Studies 1–8, Z = -73 to -93)
           Authentic artist atelier with warm oak planks, pinboards, tables & easels
          ========================================================================= */}
       <group position={[0, 0, -83]}>
-        {/* Warm Matte Oak Studio Floor */}
+        {/* Warm Studio Floor */}
         <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.002, 0]}>
           <planeGeometry args={[14, 22]} />
-          <meshStandardMaterial color="#2e2116" roughness={0.92} metalness={0.0} />
+          <meshStandardMaterial
+            color="#545148"
+            bumpMap={plasterBump}
+            bumpScale={0.004}
+            roughness={0.92}
+            metalness={0.02}
+          />
         </mesh>
         {/* Studio Ceiling */}
         <mesh rotation={[Math.PI / 2, 0, 0]} position={[0, 5.2, 0]}>
           <planeGeometry args={[14, 20]} />
-          <meshStandardMaterial color="#302c27" roughness={0.88} />
+          <meshStandardMaterial color="#c7beb1" roughness={0.9} />
         </mesh>
 
         {/* Ceiling Lighting Tracks */}
@@ -639,43 +779,35 @@ export const MuseumGallery: React.FC<MuseumGalleryProps> = ({
           color="#ffdfa8"
         />
 
-        {/* West Studio Wall & Natural Cork Pinboard */}
+        {/* West Studio Wall */}
         <mesh position={[-7.0, 2.6, 0]} rotation={[0, Math.PI / 2, 0]} receiveShadow>
           <planeGeometry args={[20, 5.2]} />
-          <meshStandardMaterial color="#585249" bumpMap={plasterBump} bumpScale={0.01} roughness={0.78} />
+          <meshStandardMaterial color="#c7beb1" bumpMap={plasterBump} bumpScale={0.01} roughness={0.76} />
         </mesh>
         <WallBaseboard position={[-7.0, 0, 0]} rotation={[0, Math.PI / 2, 0]} length={20} />
-        <mesh position={[-6.95, 2.2, 0]} rotation={[0, Math.PI / 2, 0]}>
-          <planeGeometry args={[17, 3.2]} />
-          <meshStandardMaterial color="#6e573e" bumpMap={plasterBump} bumpScale={0.018} roughness={0.92} />
-        </mesh>
 
-        {/* East Studio Wall & Natural Cork Pinboard */}
+        {/* East Studio Wall */}
         <mesh position={[7.0, 2.6, 0]} rotation={[0, -Math.PI / 2, 0]} receiveShadow>
           <planeGeometry args={[20, 5.2]} />
-          <meshStandardMaterial color="#585249" bumpMap={plasterBump} bumpScale={0.01} roughness={0.78} />
+          <meshStandardMaterial color="#c7beb1" bumpMap={plasterBump} bumpScale={0.01} roughness={0.76} />
         </mesh>
         <WallBaseboard position={[7.0, 0, 0]} rotation={[0, -Math.PI / 2, 0]} length={20} />
-        <mesh position={[6.95, 2.2, 0]} rotation={[0, -Math.PI / 2, 0]}>
-          <planeGeometry args={[17, 3.2]} />
-          <meshStandardMaterial color="#6e573e" bumpMap={plasterBump} bumpScale={0.018} roughness={0.92} />
-        </mesh>
 
         {/* Central Studio Drafting Table Island (low profile at X=0, zero artwork sightline obstruction) */}
         <DraftingTable position={[0, 0, 0]} rotation={[0, 0, 0]} />
 
         {/* North Portal Partition Wall into Study Archive */}
-        <mesh position={[-4.5, 2.6, -10]} castShadow receiveShadow>
-          <boxGeometry args={[4.2, 5.2, 0.4]} />
-          <meshStandardMaterial color="#4e4941" roughness={0.7} />
+        <mesh position={[-4.7, 2.6, -10]} castShadow receiveShadow>
+          <boxGeometry args={[4.8, 5.2, 0.4]} />
+          <meshStandardMaterial color="#c7beb1" roughness={0.7} />
         </mesh>
-        <mesh position={[4.5, 2.6, -10]} castShadow receiveShadow>
-          <boxGeometry args={[4.2, 5.2, 0.4]} />
-          <meshStandardMaterial color="#4e4941" roughness={0.7} />
+        <mesh position={[4.7, 2.6, -10]} castShadow receiveShadow>
+          <boxGeometry args={[4.8, 5.2, 0.4]} />
+          <meshStandardMaterial color="#c7beb1" roughness={0.7} />
         </mesh>
         <mesh position={[0, 4.6, -10]} castShadow receiveShadow>
           <boxGeometry args={[14, 1.2, 0.4]} />
-          <meshStandardMaterial color="#4e4941" roughness={0.7} />
+          <meshStandardMaterial color="#c7beb1" roughness={0.7} />
         </mesh>
         <DoorwayThreshold position={[0, 0, -10]} width={4.8} />
 
@@ -705,20 +837,45 @@ export const MuseumGallery: React.FC<MuseumGalleryProps> = ({
         })}
       </Suspense>
 
+      {/* Enclosed Connector from Room 4 into Room 5 (world Z = -93.2 to -96.0, zero overlap) */}
+      <group position={[0, 0, 0]}>
+        {/* West Connector Wall */}
+        <mesh position={[-7.0, 2.6, -94.6]} rotation={[0, Math.PI / 2, 0]} receiveShadow>
+          <planeGeometry args={[2.8, 5.2]} />
+          <meshStandardMaterial color="#c7beb1" bumpMap={plasterBump} bumpScale={0.012} roughness={0.76} />
+        </mesh>
+        {/* East Connector Wall */}
+        <mesh position={[7.0, 2.6, -94.6]} rotation={[0, -Math.PI / 2, 0]} receiveShadow>
+          <planeGeometry args={[2.8, 5.2]} />
+          <meshStandardMaterial color="#c7beb1" bumpMap={plasterBump} bumpScale={0.012} roughness={0.76} />
+        </mesh>
+        {/* Connector Ceiling */}
+        <mesh position={[0, 5.2, -94.6]} rotation={[Math.PI / 2, 0, 0]}>
+          <planeGeometry args={[14.0, 2.8]} />
+          <meshStandardMaterial color="#c7beb1" roughness={0.9} />
+        </mesh>
+      </group>
+
       {/* =========================================================================
           ROOM 5: THE MASTER STUDY ARCHIVE (Studies 9–16, Z = -96 to -116)
           Intimate charcoal exhibition vault with central vitrine display case
          ========================================================================= */}
       <group position={[0, 0, -106]}>
-        {/* Matte Charcoal Basalt Floor */}
+        {/* Archival Floor */}
         <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]}>
           <planeGeometry args={[14, 24]} />
-          <meshStandardMaterial color="#181a20" roughness={0.94} metalness={0.0} />
+          <meshStandardMaterial
+            color="#545148"
+            bumpMap={plasterBump}
+            bumpScale={0.004}
+            roughness={0.92}
+            metalness={0.02}
+          />
         </mesh>
         {/* Ceiling */}
         <mesh rotation={[Math.PI / 2, 0, 0]} position={[0, 5.2, 0]}>
           <planeGeometry args={[14, 20]} />
-          <meshStandardMaterial color="#121318" roughness={0.9} />
+          <meshStandardMaterial color="#c7beb1" roughness={0.9} />
         </mesh>
 
         {/* Ceiling Lighting Tracks */}
@@ -739,14 +896,14 @@ export const MuseumGallery: React.FC<MuseumGalleryProps> = ({
         {/* West Archival Wall */}
         <mesh position={[-7.0, 2.6, 0]} rotation={[0, Math.PI / 2, 0]} receiveShadow>
           <planeGeometry args={[20, 5.2]} />
-          <meshStandardMaterial color="#1e2028" bumpMap={plasterBump} bumpScale={0.01} roughness={0.72} />
+          <meshStandardMaterial color="#c7beb1" bumpMap={plasterBump} bumpScale={0.01} roughness={0.76} />
         </mesh>
         <WallBaseboard position={[-7.0, 0, 0]} rotation={[0, Math.PI / 2, 0]} length={20} />
 
         {/* East Archival Wall */}
         <mesh position={[7.0, 2.6, 0]} rotation={[0, -Math.PI / 2, 0]} receiveShadow>
           <planeGeometry args={[20, 5.2]} />
-          <meshStandardMaterial color="#1e2028" bumpMap={plasterBump} bumpScale={0.01} roughness={0.72} />
+          <meshStandardMaterial color="#c7beb1" bumpMap={plasterBump} bumpScale={0.01} roughness={0.76} />
         </mesh>
         <WallBaseboard position={[7.0, 0, 0]} rotation={[0, -Math.PI / 2, 0]} length={20} />
 
@@ -754,17 +911,17 @@ export const MuseumGallery: React.FC<MuseumGalleryProps> = ({
         <ArchivalVitrine position={[0, 0, 0]} />
 
         {/* North Portal Partition Wall into Curatorial Desk */}
-        <mesh position={[-4.2, 2.6, -10]} castShadow receiveShadow>
-          <boxGeometry args={[4.4, 5.2, 0.4]} />
-          <meshStandardMaterial color="#1c1e26" roughness={0.7} />
+        <mesh position={[-4.8, 2.6, -10]} castShadow receiveShadow>
+          <boxGeometry args={[4.6, 5.2, 0.4]} />
+          <meshStandardMaterial color="#c7beb1" roughness={0.7} />
         </mesh>
-        <mesh position={[4.2, 2.6, -10]} castShadow receiveShadow>
-          <boxGeometry args={[4.4, 5.2, 0.4]} />
-          <meshStandardMaterial color="#1c1e26" roughness={0.7} />
+        <mesh position={[4.8, 2.6, -10]} castShadow receiveShadow>
+          <boxGeometry args={[4.6, 5.2, 0.4]} />
+          <meshStandardMaterial color="#c7beb1" roughness={0.7} />
         </mesh>
         <mesh position={[0, 4.6, -10]} castShadow receiveShadow>
           <boxGeometry args={[14, 1.2, 0.4]} />
-          <meshStandardMaterial color="#1c1e26" roughness={0.7} />
+          <meshStandardMaterial color="#c7beb1" roughness={0.7} />
         </mesh>
         <DoorwayThreshold position={[0, 0, -10]} width={5.2} />
 
@@ -794,6 +951,25 @@ export const MuseumGallery: React.FC<MuseumGalleryProps> = ({
         })}
       </Suspense>
 
+      {/* Enclosed Connector from Room 5 into Room 6 (world Z = -116.2 to -118.0, zero overlap) */}
+      <group position={[0, 0, 0]}>
+        {/* West Connector Wall */}
+        <mesh position={[-7.0, 2.6, -117.1]} rotation={[0, Math.PI / 2, 0]} receiveShadow>
+          <planeGeometry args={[1.8, 5.2]} />
+          <meshStandardMaterial color="#c7beb1" bumpMap={plasterBump} bumpScale={0.012} roughness={0.76} />
+        </mesh>
+        {/* East Connector Wall */}
+        <mesh position={[7.0, 2.6, -117.1]} rotation={[0, -Math.PI / 2, 0]} receiveShadow>
+          <planeGeometry args={[1.8, 5.2]} />
+          <meshStandardMaterial color="#c7beb1" bumpMap={plasterBump} bumpScale={0.012} roughness={0.76} />
+        </mesh>
+        {/* Connector Ceiling */}
+        <mesh position={[0, 5.2, -117.1]} rotation={[Math.PI / 2, 0, 0]}>
+          <planeGeometry args={[14.0, 1.8]} />
+          <meshStandardMaterial color="#c7beb1" roughness={0.9} />
+        </mesh>
+      </group>
+
       {/* =========================================================================
           ROOM 6: CURATORIAL LOUNGE & RECEPTION DESK (Z = -119 to -133)
           Artist statement, monograph presentation & commission inquiries
@@ -802,20 +978,44 @@ export const MuseumGallery: React.FC<MuseumGalleryProps> = ({
         {/* Floor */}
         <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]}>
           <planeGeometry args={[14, 16]} />
-          <meshStandardMaterial color="#16181e" roughness={0.94} metalness={0.0} />
+          <meshStandardMaterial
+            color="#545148"
+            bumpMap={plasterBump}
+            bumpScale={0.004}
+            roughness={0.92}
+            metalness={0.02}
+          />
         </mesh>
         {/* Ceiling */}
         <mesh rotation={[Math.PI / 2, 0, 0]} position={[0, 5.2, 0]}>
           <planeGeometry args={[14, 14]} />
-          <meshStandardMaterial color="#121318" roughness={0.9} />
+          <meshStandardMaterial color="#c7beb1" roughness={0.9} />
         </mesh>
+
+        {/* West Wall */}
+        <mesh position={[-7.0, 2.6, 0]} rotation={[0, Math.PI / 2, 0]} receiveShadow>
+          <planeGeometry args={[14, 5.2]} />
+          <meshStandardMaterial color="#c7beb1" bumpMap={plasterBump} bumpScale={0.01} roughness={0.76} />
+        </mesh>
+        <WallBaseboard position={[-7.0, 0, 0]} rotation={[0, Math.PI / 2, 0]} length={14} />
+
+        {/* East Wall */}
+        <mesh position={[7.0, 2.6, 0]} rotation={[0, -Math.PI / 2, 0]} receiveShadow>
+          <planeGeometry args={[14, 5.2]} />
+          <meshStandardMaterial color="#c7beb1" bumpMap={plasterBump} bumpScale={0.01} roughness={0.76} />
+        </mesh>
+        <WallBaseboard position={[7.0, 0, 0]} rotation={[0, -Math.PI / 2, 0]} length={14} />
 
         {/* North Back Wall */}
         <mesh position={[0, 2.6, -6.5]}>
           <planeGeometry args={[14, 5.2]} />
-          <meshStandardMaterial color="#1a1d24" bumpMap={plasterBump} bumpScale={0.01} roughness={0.62} />
+          <meshStandardMaterial color="#c7beb1" bumpMap={plasterBump} bumpScale={0.01} roughness={0.76} />
         </mesh>
         <WallBaseboard position={[0, 0, -6.5]} rotation={[0, 0, 0]} length={14} />
+        <mesh position={[0, 2.4, -6.45]}>
+          <planeGeometry args={[12, 3.4]} />
+          <meshStandardMaterial color="#6e573e" bumpMap={plasterBump} bumpScale={0.018} roughness={0.92} />
+        </mesh>
 
         {/* Curatorial Reception Counter */}
         <mesh position={[0, 0.55, 0]} castShadow receiveShadow>
@@ -837,7 +1037,7 @@ export const MuseumGallery: React.FC<MuseumGalleryProps> = ({
         <Text
           position={[0, 2.05, -6.3]}
           fontSize={0.125}
-          color="#b8bdc8"
+          color="#e2ded7"
           maxWidth={6.6}
           textAlign="center"
           lineHeight={1.55}
